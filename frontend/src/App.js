@@ -1,24 +1,28 @@
-import Login from "./components/Login/Login";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { AuthContext } from "./context";
+import AppRouter from "./components/AppRouter/AppRouter";
 
 function App() {
-  const [data, setData] = useState("");
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((res) => setData(res.message));
+    if (localStorage.getItem("auth")) {
+      setIsAuth(true);
+    }
   }, []);
 
-  console.log(data);
-
   return (
-    <Router>
-      <div className="App">
-        <Login data={data} />
-      </div>
-    </Router>
+    <AuthContext.Provider
+      value={{
+        isAuth,
+        setIsAuth,
+      }}
+    >
+      <Router>
+        <AppRouter />
+      </Router>
+    </AuthContext.Provider>
   );
 }
 

@@ -8,7 +8,7 @@
 .login {
   height: 100vh;
   max-width: 484px;
-  background-color: rgba(255, 255, 255, 20%);
+  background-color: rgba(37, 41, 44, 60%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,14 +45,17 @@
 
 .button {
   font-family: "Montserrat", sans-serif;
-  font-weight: 500;
+  color: #2d2a27;
+  font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   background-color: snow;
   border-radius: 5px;
+  letter-spacing: 4px;
   border: none;
   min-height: 50px;
   margin-top: 20px;
+  /*text-transform: uppercase;*/
   transition: ease-in-out 250ms;
   cursor: pointer;
 }
@@ -74,25 +77,46 @@
   bottom: 0;
   right: 0;
   margin: auto 0;
-  width: 20px;
-  height: 17px;
+  width: 24px;
+  height: 24px;
   background: url("../../media/images/person_login.svg") no-repeat;
-  background-size: cover;
-}
-
-.input_pass_container:before {
-  content: "";
-  position: absolute;
-  top: -20px;
-  bottom: 0;
-  right: 0;
-  margin: auto 0;
-  width: 20px;
-  height: 17px;
-  background: url("../../media/images/pass_login.png") no-repeat;
   background-size: cover;
 }
 
 .input_pass_container {
   position: relative;
+}
+
+.visible {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: url("../../media/images/visible_pass.svg") 0 0 no-repeat;
+  transition: 250ms ease-in-out;
+}
+
+.notVisible {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: url("../../media/images/notVisible_pass.svg") 0 0 no-repeat;
+  transition: 250ms ease-in-out;
+}
+
+.error {
+  display: none;
+  margin-top: 20px;
+  color: #ea3a3a;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.errorView {
+  display: block;
 }
