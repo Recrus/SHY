@@ -5,6 +5,7 @@ module.exports = {
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
     ],
+    darkMode: "class",
     theme: {
         screens: {
             'sm': '425px',
@@ -27,6 +28,8 @@ module.exports = {
             'gray-dark': '#273444',
             'gray': '#8492a6',
             'gray-light': '#d3dce6',
+            'dark-blue': '#0a192f',
+            'dark-purple': '#6a1b9a',
         },
         fontFamily: {
             primary: ['Montserrat', 'sans-serif'],
@@ -36,7 +39,8 @@ module.exports = {
             sm: '14px',
             base: '16px',
             lg: '20px',
-            xl: '124px',
+            xl: '24px',
+            '2xl': '30px',
         },
         extend: {
             spacing: {

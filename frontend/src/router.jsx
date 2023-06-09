@@ -1,7 +1,6 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import DefaultLayout from "./views/Layouts/DefaultLayout.jsx";
 import GuestLayout from "./views/Layouts/GuestLayout.jsx";
-import Users from "./views/Users.jsx";
 import NoContent from "./views/Errors/NoContent.jsx";
 import Login from "./views/Layouts/Login/Login.jsx";
 import Landing from "./views/Layouts/Landing/Landing.jsx";
@@ -14,11 +13,8 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Navigate to='/users'/>
-            },
-            {
-                path: '/users',
-                element: <Users/>,
+                // todo edit
+                element: <Navigate to='/landing'/>
             },
         ]
     },
