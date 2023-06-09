@@ -1,0 +1,94 @@
+.rateCard_wrapper {
+  margin-right: 20px;
+  width: 340px;
+  height: 360px;
+  background-color: rgba(255, 153, 102, 1);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.startCount {
+  margin-top: 20px;
+}
+
+.rateCard_person {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.rateCard_text {
+  padding: 20px;
+  line-height: 24px;
+  font-size: 18px;
+}
+
+.personInfo_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 6px 6px 14px;
+  font-size: 16px;
+}
+
+.personInfo_occupation {
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .rateCard_wrapper {
+    margin-right: 10px;
+    width: 320px;
+    height: 340px;
+    padding: 10px;
+  }
+
+  .startCount {
+    margin-top: 10px;
+  }
+
+  .rateCard_person {
+    margin-bottom: 10px;
+  }
+
+  .rateCard_text {
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  .personInfo_container {
+    padding: 6px 6px 6px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rateCard_wrapper {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .rateCard_wrapper {
+    width: 300px;
+    height: 320px;
+  }
+
+  .rateCard_text {
+    padding: 20px;
+    font-size: 14px;
+  }
+}

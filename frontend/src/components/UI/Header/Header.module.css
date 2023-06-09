@@ -1,0 +1,185 @@
+.navContainer {
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 9px rgba(0, 0, 0, 0.07);
+    backdrop-filter: blur(10px);
+    font-family: "Poppins", serif;
+    position: fixed;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 30px;
+    width: 100vw;
+    z-index: 100;
+}
+
+.nav {
+    top: 0;
+    left: 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 40px 0 84px;
+    font-family: "Poppins", serif;
+    color: snow;
+}
+
+.logo {
+    width: 10%;
+}
+
+.navList {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+
+.link {
+    cursor: pointer;
+    transition: ease-in-out 250ms;
+}
+
+.link:hover {
+    opacity: 0.5;
+    transition: ease-in-out 250ms;
+}
+
+.line {
+    transform: rotate(0.5turn);
+    width: 24px;
+    margin: 10px;
+}
+
+.usersPaths {
+    display: flex;
+    align-items: center;
+}
+
+.loginLink {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 22px;
+    text-decoration: none;
+    color: snow;
+    margin-right: 40px;
+    transition: ease-in-out 250ms;
+}
+
+.loginLink:hover {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: ease-in-out 250ms;
+}
+
+.burger {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.burger:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    transition: 250ms ease-in-out;
+}
+
+.open:before {
+    width: 0;
+    height: 0;
+    transition: 250ms ease-in-out;
+}
+
+.open:after{
+    transform: rotate(45deg);
+    top: 14px;
+    transition: 250ms ease-in-out;
+}
+
+.open span {
+    transform: rotate(-45deg);
+    transition: 250ms ease-in-out;
+}
+
+.burger span {
+    position: absolute;
+    top: 14px;
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    transition: 250ms ease-in-out;
+}
+
+.burger:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+    transition: 250ms ease-in-out;
+}
+
+@media (max-width: 1024px) {
+    .navContainer{
+        padding-bottom: 20px;
+    }
+
+    .nav {
+        padding: 20px 30px 0 50px;
+    }
+
+    .navList {
+        font-size: 22px;
+    }
+
+    .loginLink {
+        font-size: 20px;
+        margin-right: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 16%;
+        height: auto;
+    }
+
+    .nav {
+        padding: 20px 20px 0 20px;
+    }
+
+    .navList {
+        display: none;
+    }
+
+    .loginLink {
+        font-size: 18px;
+        margin-right: 14px;
+    }
+}
+
+@media (max-width: 425px) {
+    .logo {
+        width: 30%;
+        height: auto;
+    }
+
+    .navContainer{
+        padding-bottom: 20px;
+    }
+
+    .nav {
+        padding: 20px 20px 0 20px;
+    }
+
+    .burger {
+        margin-left: 50px;
+    }
+}

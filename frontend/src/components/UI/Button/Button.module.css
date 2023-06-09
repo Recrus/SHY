@@ -1,0 +1,32 @@
+.button {
+  background-color: transparent;
+  padding: 15px 40px;
+  border: 1px solid snow;
+  border-radius: 5px;
+  font-family: "Montserrat", serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 22px;
+  color: snow;
+  transition: ease-in-out 250ms;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.5;
+  transition: ease-in-out 250ms;
+}
+
+@media (max-width: 1024px) {
+  .button {
+    padding: 12px 36px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .button {
+    padding: 20px 40px;
+    font-size: 24px;
+  }
+}
