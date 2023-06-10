@@ -5,7 +5,7 @@ const RateCards = ({overviews}) => {
   return (
     <>
       {overviews.map((item, index) => (
-        <div key={index} className={classes.rateCard_wrapper}>
+        <div key={index} className={classes.rateCard_wrapper + ' drop-shadow-md dark:bg-primary ease-in-out duration-300'}>
           <div className={classes.startCount}>
             <RatingStars rating="1"></RatingStars>
           </div>

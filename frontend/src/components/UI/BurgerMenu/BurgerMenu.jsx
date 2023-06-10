@@ -4,7 +4,7 @@ import facebook from "../../../media/icons/Login/facebook.svg";
 import instagram from "../../../media/icons/Login/instagram.svg";
 import twitter from "../../../media/icons/Login/twitter.svg";
 import {Link} from "react-router-dom";
-import Button from "../Button/Button";
+import TheButton from "../Button/TheButton.jsx";
 
 const BurgerMenu = ({isOpen, setIsOpen}) => {
   return (
@@ -23,7 +23,7 @@ const BurgerMenu = ({isOpen, setIsOpen}) => {
           <Link to="/login" className={classes.loginLink}>
             Login
           </Link>
-          <Button text={"Join us"}></Button>
+          <TheButton text={"Join us"}></TheButton>
           <div className={classes.footer_links}>
             <a href="#"><img src={facebook} alt="#" /></a>
             <a href="#"><img src={instagram} alt="#" /></a>

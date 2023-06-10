@@ -3,6 +3,7 @@ import classes from "./Header.module.css";
 import classesToButton from "../Button/Button.module.css";
 import logo from "../../../media/images/Landing/logo.png";
 import {Link} from "react-router-dom";
+import DarkModeSwitcher from "../DarkModeSwitcher/DarkModeSwitcher.jsx";
 
 const Header = ({isMenuOpen, setIsMenuOpen, linkVisible}) => {
     const isMobile = window.screen.width > 768;
@@ -38,10 +39,11 @@ const Header = ({isMenuOpen, setIsMenuOpen, linkVisible}) => {
                         <div className={classes.link}>Contact</div>
                     </div>
                     <div className={classes.usersPaths}>
+                        <DarkModeSwitcher sunColor='white' moonColor='white'/>
                         <Link to="/login" className={classes.loginLink} style={hideLinks}>
                             Login
                         </Link>
-                        <Link to="/signup" className={classesToButton.button}>
+                        <Link to="/signup" className={classesToButton.button} style={hideLinks}>
                             Join Us
                         </Link>
                         <div className={isMenuOpen ? `${classes.burger} ${classes.open}` : `${classes.burger}`}
