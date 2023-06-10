@@ -7,6 +7,7 @@ import {Checkbox} from "@material-tailwind/react";
 function SignUp() {
     const firstName = useRef();
     const lastName = useRef();
+    const userName = useRef();
     const email = useRef();
     const password = useRef();
     const permission = useRef();
@@ -36,6 +37,9 @@ function SignUp() {
                     <input type='text' ref={lastName}
                            className='bg-neutral border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg'
                            placeholder='Last name'/>
+                    <input type='text' ref={userName}
+                           className='bg-neutral col-span-2 border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg'
+                           placeholder='User name'/>
                     <input type='email' ref={email}
                            className='bg-neutral col-span-2 border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg'
                            placeholder='Email'/>
