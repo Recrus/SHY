@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import classes from "./BurgerMenu.module.css";
 import facebook from "../../../media/icons/Login/facebook.svg";

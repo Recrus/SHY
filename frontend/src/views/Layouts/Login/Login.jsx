@@ -1,10 +1,8 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import classes from "./Login.module.css";
 import logo from "../../../media/images/Landing/logo.png";
 import {visibilityHandler} from "../../../functions/visibilityPass.js";
 import {Link} from "react-router-dom";
-
 
 const Login = () => {
 

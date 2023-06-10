@@ -9,7 +9,6 @@ const StateContext = createContext({
     setIsMenuOpen: () => {},
 })
 
-// eslint-disable-next-line react/prop-types
 export const ContextProvider = ({children}) => {
     const [user, setUser] = useState({});
     const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));

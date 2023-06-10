@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, {useRef} from 'react';
 import {Link} from "react-router-dom";
 import logo from "../../../media/logo-nobg.svg";
