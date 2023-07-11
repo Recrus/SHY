@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import classes from "./RateCards.module.css";
 import RatingStars from "../RatingStars/RatingStars";
@@ -6,7 +5,7 @@ const RateCards = ({overviews}) => {
   return (
     <>
       {overviews.map((item, index) => (
-        <div key={index} className={classes.rateCard_wrapper}>
+        <div key={index} className={classes.rateCard_wrapper + ' drop-shadow-md dark:bg-primary ease-in-out duration-300'}>
           <div className={classes.startCount}>
             <RatingStars rating="1"></RatingStars>
           </div>

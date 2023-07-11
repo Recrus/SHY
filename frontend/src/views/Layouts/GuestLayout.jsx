@@ -1,18 +1,10 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
-import {Navigate, Outlet} from "react-router-dom";
-import {useStateContext} from "../../context/ContextProvider.jsx";
+import React from "react";
+import { Outlet } from "react-router-dom";
 
 function GuestLayout() {
-    const {user, token} = useStateContext();
-
-    if (token) {
-        return <Navigate to="/users" />
-    }
-
     return (
         <>
-            <Outlet/>
+            <Outlet />
         </>
     );
 }

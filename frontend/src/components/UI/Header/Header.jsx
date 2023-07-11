@@ -1,12 +1,10 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import classes from "./Header.module.css";
 import classesToButton from "../Button/Button.module.css";
 import logo from "../../../media/images/Landing/logo.png";
 import {Link} from "react-router-dom";
-import Button from "../Button/Button";
+import DarkModeSwitcher from "../DarkModeSwitcher/DarkModeSwitcher.jsx";
 
-// eslint-disable-next-line react/prop-types
 const Header = ({isMenuOpen, setIsMenuOpen, linkVisible}) => {
     const isMobile = window.screen.width > 768;
     let hideLinks = {};
@@ -41,10 +39,11 @@ const Header = ({isMenuOpen, setIsMenuOpen, linkVisible}) => {
                         <div className={classes.link}>Contact</div>
                     </div>
                     <div className={classes.usersPaths}>
+                        <DarkModeSwitcher sunColor='white' moonColor='white'/>
                         <Link to="/login" className={classes.loginLink} style={hideLinks}>
                             Login
                         </Link>
-                        <Link to="/signup" className={classesToButton.button}>
+                        <Link to="/signup" className={classesToButton.button} style={hideLinks}>
                             Join Us
                         </Link>
                         <div className={isMenuOpen ? `${classes.burger} ${classes.open}` : `${classes.burger}`}

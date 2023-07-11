@@ -2,7 +2,7 @@ import { useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import useDarkSide from "../../../hooks/useDarkSide.js";
 
-export default function DarkModeSwitcher() {
+export default function DarkModeSwitcher(sunColor, moonColor) {
     const [colorTheme, setTheme] = useDarkSide();
     const [darkSide, setDarkSide] = useState(
         colorTheme === "light"
@@ -16,10 +16,11 @@ export default function DarkModeSwitcher() {
     return (
         <div>
             <DarkModeSwitch
-                style={{ marginBottom: "2rem" }}
+                style={{ marginRight: '30px' }}
                 checked={darkSide}
                 onChange={toggleDarkMode}
                 size={35}
+                sunColor={sunColor}
             />
         </div>
     );

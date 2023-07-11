@@ -1,18 +1,18 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import classes from "./Landing.module.css";
-import Button from "../../../components/UI/Button/Button";
+import TheButton from "../../../components/UI/Button/TheButton.jsx";
 import goalImg from "../../../media/images/Landing/work_station.jpg";
 import RateCards from "../../../components/UI/RateCards/RateCards";
 import facebook from "../../../media/icons/Login/facebook.svg";
 import instagram from "../../../media/icons/Login/instagram.svg";
 import twitter from "../../../media/icons/Login/twitter.svg";
-import Accordion from "../../../components/UI/Accordion/Accordion";
 import BurgerMenu from "../../../components/UI/BurgerMenu/BurgerMenu";
 import Header from "../../../components/UI/Header/Header";
 import {useStateContext} from "../../../context/ContextProvider.jsx";
+import TheTimeline from "../../../components/UI/TheTimeline/TheTimeline.jsx";
 
 const Landing = () => {
+    //todo database query
     const items = [
         {
             title: 'Start',
@@ -63,31 +63,31 @@ const Landing = () => {
     } else document.body.style.overflow = "visible"
 
     return (
-        <div className={classes.wrapper}>
+        <div className="dark:bg-dark-purple ease-in-out duration-300">
             <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} linkVisible={true}></Header>
-            <div className={classes.mainWrapper}>
+            <div className={classes.mainWrapper + ' dark:bg-purple ease-in-out duration-300'}>
                 <div className={classes.landingContent}>
                     <div className={classes.landingContent_text}>Find your dream job</div>
-                    <Button text={"Learn more"}></Button>
+                    <TheButton text={"Learn more"}></TheButton>
                 </div>
             </div>
-            <main className={classes.main}>
+            <main className={classes.main + ' dark:text-neutral ease-in-out duration-300'}>
                 <div className={classes.goalContainer}>
                     <div>
-                        <hr className={classes.goalLine}/>
+                        <hr className={classes.goalLine + ' dark:bg-primary ease-in-out duration-300'}/>
                         <div className={classes.goalText}>
                             Ready to start a new career in IT? Our project is the perfect place to begin.
                         </div>
                     </div>
-                    <img src={goalImg} alt="" className={classes.goalImg}/>
+                    <img src={goalImg} alt="" className={classes.goalImg + ' drop-shadow-md'}/>
                 </div>
                 <div className={classes.table}>
-                    <div className={classes.table_text}>
+                    <div className={classes.table_text + ' dark:border-neutral'}>
                         It's a simple idea: you look for a job, we find employers who need you.
                     </div>
-                    <div className={classes.tableMain}>
-                        <Accordion items={items}></Accordion>
-                    </div>
+                        <div className="pt-10 flex justify-center">
+                            <TheTimeline props={items}/>
+                        </div>
                 </div>
                 <div className={classes.about}>
                     <div className={classes.about_title}>Junior-developer`s about us</div>
@@ -117,13 +117,13 @@ const Landing = () => {
                                 placeholder="Message"
                                 name="message"
                             />
-                            <button>Send Message</button>
+                            <button className='drop-shadow-md dark:bg-primary ease-in-out duration-300'>Send Message</button>
                         </form>
                     </div>
                 </div>
             </main>
             <BurgerMenu isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}></BurgerMenu>
-            <footer className={classes.footer_wrapper}>
+            <footer className={classes.footer_wrapper + ' dark:bg-purple ease-in-out duration-300'}>
                 <div className={classes.footer_container}>
                     <div className={classes.footer_section}>
                         <div className={classes.footer_title}>
@@ -134,9 +134,9 @@ const Landing = () => {
                     </div>
                     <div className={classes.footer_section}>
                         <div className={classes.footer_links}>
-                            <a href="Landing#"><img src={facebook} alt="#"/></a>
-                            <a href="Landing#"><img src={instagram} alt="#"/></a>
-                            <a href="Landing#"><img src={twitter} alt="#"/></a>
+                            <a href="#"><img src={facebook} alt="#"/></a>
+                            <a href="#"><img src={instagram} alt="#"/></a>
+                            <a href="#"><img src={twitter} alt="#"/></a>
                         </div>
                     </div>
                     <div className={classes.footer_section}>
