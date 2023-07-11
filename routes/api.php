@@ -32,5 +32,5 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
 
-Route::apiResource('users', UserController::class)->only('index', 'show');
+Route::apiResource('users', UserController::class);
 Route::apiResource('roles', RoleController::class)->only('index', 'show');

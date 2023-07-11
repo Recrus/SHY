@@ -11,7 +11,8 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+//       todo CHECK auth
+        return true;
     }
 
     /**
@@ -22,7 +23,14 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'user_name' => ['nullable', 'string'],
+            'phone' => ['nullable', 'string'],
+            'email' => ['required', 'email'],
+            'role_id' => ['required'],
+            'password' => ['required', 'string'],
+            'permission_for_email' => ['required', 'boolean'],
         ];
     }
 }

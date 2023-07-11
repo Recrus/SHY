@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -55,21 +56,22 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
-            'user_name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:users',
             'password' => 'required',
+            'role_id' => 'required',
+            'permission_for_email' => "required",
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
-        $user = User::create(array_merge(
+        User::create(array_merge(
             $validator->validated(),
             ['password' => bcrypt($request->password)]
         ));
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
-        ], 201);
+
+        $loginResponse = $this->login($request);
+
+        return $loginResponse;
     }
 
     /**
@@ -88,6 +90,8 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
+
+    //todo make refresh
     public function refresh(): JsonResponse
     {
         return $this->createNewToken(auth()->refresh());
@@ -112,11 +116,20 @@ class AuthController extends Controller
      */
     protected function createNewToken($token)
     {
+        $user = auth()->user();
+
+        $customClaims = [
+            'role' => $user->role_id,
+        ];
+
+        $token = JWTAuth::claims($customClaims)->fromUser($user);
+
+        //todo remove unnecessary fields?
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'user' => $user
         ]);
     }
 }
