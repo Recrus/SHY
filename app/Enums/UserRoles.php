@@ -7,6 +7,6 @@ use BenSampo\Enum\Enum;
 final class UserRoles extends Enum
 {
     const STUDENT = 'student';
-    const TEACHER = 'teacher';
+    const HR = 'hr';
     const ADMIN = 'admin';
 }
