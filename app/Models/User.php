@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -91,14 +92,28 @@ class User extends Authenticatable implements JWTSubject
 
     public function exams(): BelongsToMany
     {
-        return $this->belongsToMany(Exam::class, 'user_exam', 'junior_id', 'exam_id')
+        return $this->belongsToMany(Exam::class, 'user_exam', 'junior_id')
             ->withPivot(
                 'mark',
                 'review_text',
                 'reviewed_at',
                 'is_accepted',
-                )
+            )
             ->using(UserExam::class)
+            ->withTimestamps();
+    }
+
+    public function vacancies(): HasMany
+    {
+        return $this->hasMany(Vacancy::class, 'hr_id');
+    }
+
+    //todo check related pivot key
+    public function responses(): BelongsToMany
+    {
+        return $this->belongsToMany(Vacancy::class, 'user_vacancy', 'junior_id')
+            ->withPivot('date_of_response')
+            ->using(UserVacancy::class)
             ->withTimestamps();
     }
 }

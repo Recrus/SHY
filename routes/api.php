@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\V1\RoleController;
 use App\Http\Controllers\Api\V1\SubjectController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\UserExamController;
+use App\Http\Controllers\Api\V1\UserVacancyController;
+use App\Http\Controllers\Api\V1\VacancyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +43,8 @@ Route::apiResource('roles', RoleController::class)->only('index', 'show');
 Route::apiResource('resumes', ResumeController::class);
 Route::apiResource('exams', ExamController::class);
 Route::apiResource('user.exams', UserExamController::class)->only('index', 'store', 'update', 'destroy');
+Route::apiResource('user.vacancies', UserVacancyController::class)->only('index', 'store', 'update', 'destroy');
 Route::apiResource('subjects', SubjectController::class);
+Route::apiResource('vacancies', VacancyController::class);
 
 
