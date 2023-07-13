@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\ExamController;
 use App\Http\Controllers\Api\V1\ResumeController;
 use App\Http\Controllers\Api\V1\RoleController;
+use App\Http\Controllers\Api\V1\SubjectController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\UserExamsController;
 use Illuminate\Http\Request;
@@ -40,4 +41,6 @@ Route::apiResource('roles', RoleController::class)->only('index', 'show');
 Route::apiResource('resumes', ResumeController::class);
 Route::apiResource('exams', ExamController::class);
 Route::apiResource('user.exams', UserExamsController::class)->only('index', 'store', 'update', 'destroy');
+Route::apiResource('subjects', SubjectController::class);
+
 

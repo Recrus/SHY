@@ -91,7 +91,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function exams(): BelongsToMany
     {
-        return $this->belongsToMany(Exam::class, 'user_exams', 'junior_id', 'exam_id')
+        return $this->belongsToMany(Exam::class, 'user_exam', 'junior_id', 'exam_id')
             ->withPivot(
                 'mark',
                 'review_text',

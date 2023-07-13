@@ -38,7 +38,7 @@ class Exam extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'user_exams', 'exam_id', 'junior_id')
+        return $this->belongsToMany(User::class, 'user_exam', 'exam_id', 'junior_id')
             ->withPivot(
                 'mark',
                 'review_text',

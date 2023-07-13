@@ -43,6 +43,7 @@ class ResumeController extends Controller
 
     public function update(ResumeRequest $request, Resume $resume): JsonResponse
     {
+        //todo patch
         $resume->update($request->validated());
 
         return (new ResumeResource($resume))

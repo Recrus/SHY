@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ResumeSeeder::class,
             ExamSeeder::class,
             UserExamsSeeder::class,
+            SubjectSeeder::class,
         ]);
     }
 }
