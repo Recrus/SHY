@@ -6,7 +6,7 @@ use App\Http\Resources\Exam\ExamResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserExamsResource extends JsonResource
+class UserExamResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

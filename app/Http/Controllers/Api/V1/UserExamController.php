@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Exam\ExamResource;
-use App\Http\Resources\User\UserExamsResource;
+use App\Http\Resources\User\UserExamResource;
 use App\Http\Resources\User\UserResource;
 use App\Models\Exam;
 use App\Models\User;
@@ -14,7 +14,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class UserExamsController extends Controller
+class UserExamController extends Controller
 {
     public function index(Request $request, User $user): AnonymousResourceCollection
     {
@@ -26,7 +26,7 @@ class UserExamsController extends Controller
             ->allowedFilters(Exam::getAllowedFilters())
             ->paginate($itemsPerPage);
 
-        return UserExamsResource::collection($builder);
+        return UserExamResource::collection($builder);
     }
 
     public function store(User $user, Request $request): JsonResponse

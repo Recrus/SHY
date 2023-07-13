@@ -98,7 +98,7 @@ class User extends Authenticatable implements JWTSubject
                 'reviewed_at',
                 'is_accepted',
                 )
-            ->using(UserExams::class)
+            ->using(UserExam::class)
             ->withTimestamps();
     }
 }

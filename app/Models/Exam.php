@@ -45,7 +45,7 @@ class Exam extends Model
                 'reviewed_at',
                 'is_accepted',
             )
-            ->using(UserExams::class)
+            ->using(UserExam::class)
             ->withTimestamps();
     }
 }
