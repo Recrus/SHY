@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Subject extends Model
+class CoverLetter extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'text',
+        'junior_id',
+        'user_vacancy_id',
     ];
 
     public static function getAllowedSorts(): array
@@ -27,8 +30,13 @@ class Subject extends Model
         return [];
     }
 
-    public function questions(): HasMany
+    public function junior(): BelongsTo
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(User::class, 'junior_id');
+    }
+
+    public function userVacancy(): BelongsTo
+    {
+        return $this->belongsTo(UserVacancy::class, 'id');
     }
 }

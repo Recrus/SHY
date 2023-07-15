@@ -116,4 +116,9 @@ class User extends Authenticatable implements JWTSubject
             ->using(UserVacancy::class)
             ->withTimestamps();
     }
+
+    public function coverLetter(): HasMany
+    {
+        return $this->hasMany(CoverLetter::class, 'junior_id');
+    }
 }

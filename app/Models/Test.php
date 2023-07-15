@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Subject extends Model
+class Test extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
+        'description',
     ];
 
     public static function getAllowedSorts(): array
@@ -25,10 +25,5 @@ class Subject extends Model
     public static function getAllowedFilters(): array
     {
         return [];
-    }
-
-    public function questions(): HasMany
-    {
-        return $this->hasMany(Question::class);
     }
 }

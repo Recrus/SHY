@@ -19,7 +19,10 @@ class DatabaseSeeder extends Seeder
             UserExamSeeder::class,
             SubjectSeeder::class,
             VacancySeeder::class,
+            CoverLetterSeeder::class,
             UserVacancySeeder::class,
+            QuestionSeeder::class,
+            TestSeeder::class,
         ]);
     }
 }

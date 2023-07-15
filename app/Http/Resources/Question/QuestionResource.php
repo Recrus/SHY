@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\User;
+namespace App\Http\Resources\Question;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserVacancyResource extends JsonResource
+class QuestionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,9 @@ class UserVacancyResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'date_of_response' => $this->pivot->date_of_response,
-            'vacancy_id' => $this->pivot->vacancy_id,
-            'junior_id' => $this->pivot->junior_id,
-            'cover_letter_id' => $this->pivot->cover_letter_id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'subject_id' => $this->subject_id,
         ];
     }
 }

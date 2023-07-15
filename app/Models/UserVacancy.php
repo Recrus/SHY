@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class UserVacancy extends Pivot
@@ -11,6 +12,7 @@ class UserVacancy extends Pivot
 
     protected $fillable = [
         'date_of_response',
+        'cover_letter_id',
     ];
 
     public static function getAllowedSorts(): array
@@ -24,5 +26,10 @@ class UserVacancy extends Pivot
     public static function getAllowedFilters(): array
     {
         return [];
+    }
+
+    public function coverLetter(): HasMany
+    {
+        return $this->hasMany(CoverLetter::class, 'id');
     }
 }
