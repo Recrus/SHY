@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AnswerController;
+use App\Http\Controllers\Api\V1\AnswerUserController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CoverLetterController;
 use App\Http\Controllers\Api\V1\ExamController;
 use App\Http\Controllers\Api\V1\QuestionController;
+use App\Http\Controllers\Api\V1\QuestionTestController;
 use App\Http\Controllers\Api\V1\ResumeController;
 use App\Http\Controllers\Api\V1\RoleController;
 use App\Http\Controllers\Api\V1\SubjectController;
@@ -47,10 +50,13 @@ Route::apiResource('resumes', ResumeController::class);
 Route::apiResource('exams', ExamController::class);
 Route::apiResource('user.exams', UserExamController::class)->only('index', 'store', 'update', 'destroy');
 Route::apiResource('user.vacancies', UserVacancyController::class)->only('index', 'store', 'update', 'destroy');
+Route::apiResource('user.answers', AnswerUserController::class)->only('index', 'store', 'update', 'destroy');
+Route::apiResource('test.questions', QuestionTestController::class)->only('index', 'store', 'update', 'destroy');
 Route::apiResource('subjects', SubjectController::class);
 Route::apiResource('vacancies', VacancyController::class);
 Route::apiResource('cover_letters', CoverLetterController::class);
 Route::apiResource('questions', QuestionController::class);
 Route::apiResource('tests', TestController::class);
+Route::apiResource('answers', AnswerController::class);
 
 

@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CoverLetter\CoverLetterRequest;
-use App\Http\Requests\Subject\SubjectRequest;
 use App\Http\Resources\CoverLetter\CoverLetterResource;
-use App\Http\Resources\Subject\SubjectResource;
 use App\Models\CoverLetter;
-use App\Models\Subject;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

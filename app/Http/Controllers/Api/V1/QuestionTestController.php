@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Test\TestRequest;
+use App\Http\Resources\Question\QuestionTestResource;
 use App\Http\Resources\Test\TestResource;
+use App\Models\Answer;
+use App\Models\Question;
 use App\Models\Test;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,47 +14,42 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class TestController extends Controller
+class QuestionTestController extends Controller
 {
-    public function index(Request $request): AnonymousResourceCollection
+    public function index(Request $request, Test $test): AnonymousResourceCollection
     {
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
-        $builder = QueryBuilder::for(Test::class)
+        $builder = QueryBuilder::for($test->questions())
             ->defaultSort('id')
             ->allowedSorts(Test::getAllowedSorts())
             ->allowedFilters(Test::getAllowedFilters())
             ->paginate($itemsPerPage);
 
-        return TestResource::collection($builder);
+        return QuestionTestResource::collection($builder);
     }
 
-    public function store(TestRequest $request): JsonResponse
+    public function store(Test $test, Request $request): JsonResponse
     {
-        $test = Test::create($request->validated());
+        $test->questions()->sync($request->ids);
 
         return (new TestResource($test))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Test $test): TestResource
+    public function update(Test $test, Question $question): JsonResponse
     {
-        return new TestResource($test);
-    }
-
-    public function update(TestRequest $request, Test $test): JsonResponse
-    {
-        $test->update($request->validated());
+        $test->questions()->syncWithoutDetaching($question->getKey());
 
         return (new TestResource($test))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function destroy(Test $test): JsonResponse
+    public function destroy(Test $test, Question $question): JsonResponse
     {
-        $test->delete();
+        $test->questions()->detach($question->getKey());
 
         return response()->json([], Response::HTTP_NO_CONTENT);
     }
