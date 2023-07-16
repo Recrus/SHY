@@ -32,4 +32,12 @@ class Test extends Model
     {
         return $this->belongsToMany(Question::class)->withTimestamps();
     }
+
+    public function students(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'test_user', 'test_id', 'student_id')
+            ->withPivot('mark', 'is_passed')
+            ->using(TestUser::class)
+            ->withTimestamps();
+    }
 }

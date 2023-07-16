@@ -17,7 +17,10 @@ class UserExamFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'review_text' => fake()->text(),
+            'reviewed_at' => now(),
+            'is_accepted' => fake()->boolean(),
+            'mark' => fake()->numberBetween(2, 5),
         ];
     }
 }

@@ -22,13 +22,9 @@ class UserExamSeeder extends Seeder
             $randomExam = $exams->random($examsCount);
 
             foreach ($randomExam as $exam) {
-                UserExam::create([
+                UserExam::factory()->create([
                     'junior_id' => $user->id,
                     'exam_id' => $exam->id,
-                    'review_text' => fake()->text(),
-                    'reviewed_at' => now(),
-                    'is_accepted' => fake()->boolean(),
-                    'mark' => fake()->numberBetween(2, 5),
                 ]);
             }
         }

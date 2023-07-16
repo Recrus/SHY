@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -125,5 +124,13 @@ class User extends Authenticatable implements JWTSubject
     public function answers(): BelongsToMany
     {
         return $this->belongsToMany(Answer::class)->withTimestamps();
+    }
+
+    public function tests(): BelongsToMany
+    {
+        return $this->belongsToMany(Test::class, 'test_user', 'student_id')
+            ->withPivot('mark', 'is_passed')
+            ->using(TestUser::class)
+            ->withTimestamps();
     }
 }
