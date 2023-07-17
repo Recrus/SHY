@@ -19,7 +19,7 @@ class ExamResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'link' => $this->link,
-            'reviewer' => $this->reviewer,
+            'reviewer_id' => $this->reviewer_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -16,6 +16,8 @@ class AnswerController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', Answer::class);
+
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
         $builder = QueryBuilder::for(Answer::class)
@@ -29,6 +31,8 @@ class AnswerController extends Controller
 
     public function store(AnswerRequest $request): JsonResponse
     {
+        $this->authorize('view', Answer::class);
+
         $answer = Answer::create($request->validated());
 
         return (new AnswerResource($answer))
@@ -38,11 +42,15 @@ class AnswerController extends Controller
 
     public function show(Answer $answer): AnswerResource
     {
+        $this->authorize('create', Answer::class);
+
         return new AnswerResource($answer);
     }
 
     public function update(AnswerRequest $request, Answer $answer): JsonResponse
     {
+        $this->authorize('update', Answer::class);
+
         $answer->update($request->validated());
 
         return (new AnswerResource($answer))
@@ -52,6 +60,8 @@ class AnswerController extends Controller
 
     public function destroy(Answer $answer): JsonResponse
     {
+        $this->authorize('delete', Answer::class);
+
         $answer->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);

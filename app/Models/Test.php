@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Test extends Model
@@ -39,5 +40,10 @@ class Test extends Model
             ->withPivot('mark', 'is_passed')
             ->using(TestUser::class)
             ->withTimestamps();
+    }
+
+    public function answerUser(): BelongsTo
+    {
+        return $this->belongsTo(AnswerUser::class, 'id');
     }
 }

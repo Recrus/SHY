@@ -18,7 +18,7 @@ class CoverLetterResource extends JsonResource
             'id' => $this->id,
             'text' => $this->text,
             //todo should i return junior or id?
-            'junior_id' => $this->junior,
+            'junior_id' => $this->junior_id,
         ];
     }
 }

@@ -18,6 +18,7 @@ class AnswerUserResource extends JsonResource
             'id' => $this->id,
             'answer_id' => $this->pivot->answer_id,
             'user_id' => $this->pivot->user_id,
+            'test_id' => $this->pivot->test_id,
         ];
     }
 }

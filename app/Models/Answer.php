@@ -37,6 +37,9 @@ class Answer extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class, 'answer_user', 'id')
+            ->withPivot('test_id')
+            ->using(AnswerUser::class)
+            ->withTimestamps();
     }
 }

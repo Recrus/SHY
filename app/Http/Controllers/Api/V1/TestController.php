@@ -16,6 +16,8 @@ class TestController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', Test::class);
+
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
         $builder = QueryBuilder::for(Test::class)
@@ -29,6 +31,8 @@ class TestController extends Controller
 
     public function store(TestRequest $request): JsonResponse
     {
+        $this->authorize('create', Test::class);
+
         $test = Test::create($request->validated());
 
         return (new TestResource($test))
@@ -38,11 +42,15 @@ class TestController extends Controller
 
     public function show(Test $test): TestResource
     {
+        $this->authorize('view', Test::class);
+
         return new TestResource($test);
     }
 
     public function update(TestRequest $request, Test $test): JsonResponse
     {
+        $this->authorize('update', Test::class);
+
         $test->update($request->validated());
 
         return (new TestResource($test))
@@ -52,6 +60,8 @@ class TestController extends Controller
 
     public function destroy(Test $test): JsonResponse
     {
+        $this->authorize('delete', Test::class);
+
         $test->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);

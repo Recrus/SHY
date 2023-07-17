@@ -16,6 +16,7 @@ class SubjectController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', Subject::class);
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
         $builder = QueryBuilder::for(Subject::class)
@@ -29,6 +30,7 @@ class SubjectController extends Controller
 
     public function store(SubjectRequest $request): JsonResponse
     {
+        $this->authorize('create', Subject::class);
         $subject = Subject::create($request->validated());
 
         return (new SubjectResource($subject))
@@ -38,11 +40,13 @@ class SubjectController extends Controller
 
     public function show(Subject $subject): SubjectResource
     {
+        $this->authorize('view', Subject::class);
         return new SubjectResource($subject);
     }
 
     public function update(SubjectRequest $request, Subject $subject): JsonResponse
     {
+        $this->authorize('update', Subject::class);
         $subject->update($request->validated());
 
         return (new SubjectResource($subject))
@@ -52,6 +56,7 @@ class SubjectController extends Controller
 
     public function destroy(Subject $subject): JsonResponse
     {
+        $this->authorize('delete', Subject::class);
         $subject->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);

@@ -18,8 +18,7 @@ class AnswerResource extends JsonResource
             'id' => $this->id,
             'text' => $this->text,
             'answer' => $this->answer,
-            //todo id?
-            'question_id' => $this->question,
+            'question_id' => $this->question_id,
         ];
     }
 }

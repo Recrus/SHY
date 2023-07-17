@@ -19,7 +19,7 @@ class VacancyResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'closed_at' => $this->closed_at,
-            'hr_id' => $this->hr,
+            'hr_id' => $this->hr_id,
         ];
     }
 }

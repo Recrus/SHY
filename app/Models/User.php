@@ -111,7 +111,7 @@ class User extends Authenticatable implements JWTSubject
     public function responses(): BelongsToMany
     {
         return $this->belongsToMany(Vacancy::class, 'user_vacancy', 'junior_id')
-            ->withPivot('date_of_response')
+            ->withPivot('date_of_response', 'cover_letter_id')
             ->using(UserVacancy::class)
             ->withTimestamps();
     }
@@ -123,7 +123,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function answers(): BelongsToMany
     {
-        return $this->belongsToMany(Answer::class)->withTimestamps();
+        return $this->belongsToMany(Answer::class, 'answer_user', 'user_id')
+            ->withPivot('test_id')
+            ->using(AnswerUser::class)
+            ->withTimestamps();
     }
 
     public function tests(): BelongsToMany

@@ -61,4 +61,7 @@ Route::apiResource('questions', QuestionController::class);
 Route::apiResource('tests', TestController::class);
 Route::apiResource('answers', AnswerController::class);
 
+Route::get('questions/{question}/answers', [QuestionController::class, 'answers']);
+Route::get('cover_letters_of_user', [CoverLetterController::class, 'indexForUser']);
+
 

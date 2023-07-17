@@ -47,6 +47,7 @@ class UserVacancyController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
+    //todo coverLetter id
     public function update(User $user, Vacancy $vacancy, Request $request): JsonResponse
     {
         $requestData = $request->validate([
