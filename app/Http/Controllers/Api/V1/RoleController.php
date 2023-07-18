@@ -13,6 +13,8 @@ class RoleController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', Role::class);
+
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
         $builder = QueryBuilder::for(Role::class)
@@ -26,6 +28,8 @@ class RoleController extends Controller
 
     public function show(Role $role): RoleResource
     {
+        $this->authorize('view', Role::class);
+
         return new RoleResource($role);
     }
 }
