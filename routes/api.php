@@ -56,12 +56,11 @@ Route::apiResource('test.questions', QuestionTestController::class)->only('index
 Route::apiResource('user.tests', TestUserController::class)->only('index', 'store', 'update', 'destroy');
 Route::apiResource('subjects', SubjectController::class);
 Route::apiResource('vacancies', VacancyController::class);
-Route::apiResource('cover_letters', CoverLetterController::class);
+Route::apiResource('cover-letters', CoverLetterController::class);
 Route::apiResource('questions', QuestionController::class);
 Route::apiResource('tests', TestController::class);
 Route::apiResource('answers', AnswerController::class);
 
 Route::get('questions/{question}/answers', [QuestionController::class, 'answers']);
-Route::get('cover_letters_of_user', [CoverLetterController::class, 'indexForUser']);
-
-
+Route::get('cover_letters-of-user', [CoverLetterController::class, 'indexForUser']);
+Route::get('tests/{test_id}/check', [TestUserController::class, 'checkAnswers']);

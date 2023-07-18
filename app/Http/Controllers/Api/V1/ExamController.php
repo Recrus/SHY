@@ -16,6 +16,8 @@ class ExamController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', Exam::class);
+
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
         $builder = QueryBuilder::for(Exam::class)
@@ -29,6 +31,8 @@ class ExamController extends Controller
 
     public function store(ExamRequest $request): JsonResponse
     {
+        $this->authorize('create', Exam::class);
+
         $exam = Exam::create($request->validated());
 
         return (new ExamResource($exam))
@@ -38,11 +42,15 @@ class ExamController extends Controller
 
     public function show(Exam $exam): ExamResource
     {
+        $this->authorize('view', Exam::class);
+
         return new ExamResource($exam);
     }
 
     public function update(ExamRequest $request, Exam $exam): JsonResponse
     {
+        $this->authorize('update', Exam::class);
+
         $exam->update($request->validated());
 
         return (new ExamResource($exam))
@@ -52,6 +60,8 @@ class ExamController extends Controller
 
     public function destroy(Exam $exam): JsonResponse
     {
+        $this->authorize('delete', Exam::class);
+
         $exam->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);

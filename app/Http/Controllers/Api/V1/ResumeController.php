@@ -16,6 +16,8 @@ class ResumeController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', Resume::class);
+
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
         $builder = QueryBuilder::for(Resume::class)
@@ -29,6 +31,10 @@ class ResumeController extends Controller
 
     public function store(ResumeRequest $request): JsonResponse
     {
+        $juniorId = $request->junior_id;
+
+        $this->authorize('create', [Resume::class, $juniorId]);
+
         $resume = Resume::create($request->validated());
 
         return (new ResumeResource($resume))
@@ -38,12 +44,21 @@ class ResumeController extends Controller
 
     public function show(Resume $resume): ResumeResource
     {
+        $juniorId = $resume->junior_id;
+
+        $this->authorize('view', [Resume::class, $juniorId]);
+
         return new ResumeResource($resume);
     }
 
     public function update(ResumeRequest $request, Resume $resume): JsonResponse
     {
         //todo patch
+
+        $juniorId = $request->junior_id;
+
+        $this->authorize('update', [Resume::class, $juniorId]);
+
         $resume->update($request->validated());
 
         return (new ResumeResource($resume))
@@ -53,6 +68,10 @@ class ResumeController extends Controller
 
     public function destroy(Resume $resume): JsonResponse
     {
+        $juniorId = $resume->junior_id;
+
+        $this->authorize('delete', [Resume::class, $juniorId]);
+
         $resume->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);
