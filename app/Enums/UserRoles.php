@@ -8,6 +8,6 @@ final class UserRoles extends Enum
 {
     const STUDENT = 'student';
     const HR = 'hr';
-    //todo create superAdmin and change policies
+    //todo create superAdmin, reviewer and change policies
     const ADMIN = 'admin';
 }

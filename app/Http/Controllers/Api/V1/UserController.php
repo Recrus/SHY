@@ -16,6 +16,8 @@ class UserController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', User::class);
+
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
         $builder = QueryBuilder::for(User::class)
@@ -29,12 +31,16 @@ class UserController extends Controller
 
     public function show(User $user): UserResource
     {
+        $this->authorize('view', [User::class, $user, auth()->user()]);
+
         return new UserResource($user);
     }
 
     //todo delete?
     public function store(UserRequest $request): JsonResponse
     {
+        $this->authorize('create', User::class);
+
         $user = User::create($request->validated());
 
         return (new UserResource($user))
@@ -44,6 +50,9 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User $user): JsonResponse
     {
+        //todo patch...
+        $this->authorize('update', [User::class, $user, auth()->user()]);
+
         $user->update($request->validated());
 
         return (new UserResource($user))
@@ -53,6 +62,8 @@ class UserController extends Controller
 
     public function destroy(User $user): JsonResponse
     {
+        $this->authorize('delete', [User::class, $user, auth()->user()]);
+
         $user->delete();
         return response()->json([], Response::HTTP_NO_CONTENT);
     }

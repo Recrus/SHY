@@ -11,7 +11,6 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-//       todo CHECK auth
         return true;
     }
 

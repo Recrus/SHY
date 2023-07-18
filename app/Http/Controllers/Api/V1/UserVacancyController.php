@@ -7,6 +7,7 @@ use App\Http\Resources\User\UserResource;
 use App\Http\Resources\User\UserVacancyResource;
 use App\Models\Exam;
 use App\Models\User;
+use App\Models\UserVacancy;
 use App\Models\Vacancy;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,6 +19,8 @@ class UserVacancyController extends Controller
 {
     public function index(Request $request, User $user): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', [UserVacancy::class, $user, auth()->user()]);
+
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
         $builder = QueryBuilder::for($user->responses())
@@ -31,6 +34,8 @@ class UserVacancyController extends Controller
 
     public function store(User $user, Request $request): JsonResponse
     {
+        $this->authorize('create', [UserVacancy::class, $user, auth()->user()]);
+
         $vacancyData = [];
 
         foreach ($request->input('ids', []) as $vacancy) {
@@ -50,8 +55,11 @@ class UserVacancyController extends Controller
     //todo coverLetter id
     public function update(User $user, Vacancy $vacancy, Request $request): JsonResponse
     {
+        $this->authorize('update', [UserVacancy::class, $user, auth()->user()]);
+
         $requestData = $request->validate([
             'date_of_response' => 'date',
+            'cover_letter_id' => 'integer',
         ]);
 
         $pivotData = [];
@@ -68,6 +76,8 @@ class UserVacancyController extends Controller
 
     public function destroy(User $user, Vacancy $vacancy): JsonResponse
     {
+        $this->authorize('delete', [UserVacancy::class, $user, auth()->user()]);
+
         $user->responses()->detach($vacancy->getKey());
 
         return response()->json([], Response::HTTP_NO_CONTENT);

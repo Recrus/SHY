@@ -29,6 +29,9 @@ class VacancyController extends Controller
 
     public function store(VacancyRequest $request): JsonResponse
     {
+        $hr_id = $request->hr_id;
+        $this->authorize('create', [Vacancy::class, $hr_id]);
+
         $vacancy = Vacancy::create($request->validated());
 
         return (new VacancyResource($vacancy))
@@ -38,11 +41,16 @@ class VacancyController extends Controller
 
     public function show(Vacancy $vacancy): VacancyResource
     {
+        $this->authorize('view', Vacancy::class);
+
         return new VacancyResource($vacancy);
     }
 
     public function update(VacancyRequest $request, Vacancy $vacancy): JsonResponse
     {
+        $hr_id = $request->hr_id;
+        $this->authorize('update', [Vacancy::class, $hr_id]);
+
         $vacancy->update($request->validated());
 
         return (new VacancyResource($vacancy))
@@ -52,6 +60,9 @@ class VacancyController extends Controller
 
     public function destroy(Vacancy $vacancy): JsonResponse
     {
+        $hr_id = $vacancy->hr_id;
+        $this->authorize('delete', [Vacancy::class, $hr_id]);
+
         $vacancy->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);

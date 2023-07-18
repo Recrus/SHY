@@ -8,6 +8,7 @@ use App\Http\Resources\User\UserExamResource;
 use App\Http\Resources\User\UserResource;
 use App\Models\Exam;
 use App\Models\User;
+use App\Models\UserExam;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -18,6 +19,8 @@ class UserExamController extends Controller
 {
     public function index(Request $request, User $user): AnonymousResourceCollection
     {
+        $this->authorize('viewAny', [UserExam::class, $user, auth()->user()]);
+
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
         $builder = QueryBuilder::for($user->exams())
@@ -31,6 +34,8 @@ class UserExamController extends Controller
 
     public function store(User $user, Request $request): JsonResponse
     {
+        $this->authorize('create', UserExam::class);
+
         $examData = [];
 
         foreach ($request->input('ids', []) as $exam) {
@@ -47,10 +52,17 @@ class UserExamController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function update(User $user, Exam $exam): JsonResponse
+    public function update(User $user, Exam $exam, Request $request): JsonResponse
     {
-        $user->exams()->syncWithoutDetaching($exam->getKey());
+        $this->authorize('update', UserExam::class);
 
+        $pivotData = [];
+
+        $additionalFields = $request->only(['review_text', 'reviewed_at', 'mark', 'is_accepted']);
+
+        $pivotData[$exam->getKey()] = $additionalFields;
+
+        $user->exams()->syncWithoutDetaching($pivotData);
 
         return (new UserResource($user))
             ->response()
@@ -59,6 +71,8 @@ class UserExamController extends Controller
 
     public function destroy(User $user, Exam $exam): JsonResponse
     {
+        $this->authorize('delete', UserExam::class);
+
         $user->exams()->detach($exam->getKey());
 
         return response()->json([], Response::HTTP_NO_CONTENT);
