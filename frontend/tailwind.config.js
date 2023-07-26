@@ -12,16 +12,25 @@ module.exports = withMT({
     darkMode: "class",
     theme: {
         screens: {
+            xs: "320px",
             sm: "425px",
             md: "768px",
             lg: "1024px",
             xl: "1440px",
             "2xl": "2560px",
         },
+        container: {
+            center: true,
+        },
         colors: {
             primary: "#ff5733",
             accent: "#ff9966",
             neutral: "#f2f2f2",
+            "dark-primary": "#212121",
+            "dark-accent": "#303030",
+            "dark-neutral": "#424242",
+            "dark-additional": "#212121",
+            //additional colors
             blue: "#1fb6ff",
             pink: "#ff49db",
             orange: "#ff7849",

@@ -3,16 +3,16 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider.jsx";
 import { Spinner } from "@material-tailwind/react";
 
-const RequireRole = ({ role, children }) => {
+const RequireRole = ({ role = null, children }) => {
     const location = useLocation();
     const { user, loading } = useStateContext();
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-[100vh]">
+            <div className="flex justify-center items-center h-[100vh] bg-dark-neutral">
                 <Spinner
                     color="light-blue"
-                    className="h-20 w-20 text-gray-light"
+                    className="h-20 w-20 text-dark-primary"
                 />
             </div>
         );
@@ -23,8 +23,6 @@ const RequireRole = ({ role, children }) => {
     }
 
     if (user.role_id !== parseInt(role)) {
-        console.log(parseInt(role));
-        console.log("role problem");
         return (
             <Navigate to="/access-denied" replace state={{ from: location }} />
         );

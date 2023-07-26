@@ -9,6 +9,10 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+.dark{
+    background-color: #212121;
+}
+
 /* Обнуление стилей */
 * {
     padding: 0;

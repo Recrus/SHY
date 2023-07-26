@@ -6,26 +6,28 @@ import { Spinner } from "@material-tailwind/react";
 
 const LoggedUser = ({ children }) => {
     const navigate = useNavigate();
-    const { user, role, loading } = useStateContext();
+    const { user, loading } = useStateContext();
 
     useEffect(() => {
         if (!loading && user) {
-            if (role === 1) {
-                navigate("/admin");
-            } else if (role === 2) {
-                navigate("/teacher");
+            if (user.role_id === 1) {
+                navigate("/super-admin/home");
+            } else if (user.role_id === 2) {
+                //todo change to hr
+                navigate("/hr");
             } else {
-                navigate("/student");
+                //todo paths for reviewer and admin and else for no one
+                navigate("/employee");
             }
         }
-    }, [loading, user, navigate, role]);
+    }, [loading, user, navigate]);
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-[100vh]">
+            <div className="flex justify-center items-center h-[100vh] bg-dark-neutral">
                 <Spinner
                     color="light-blue"
-                    className="h-20 w-20 text-gray-light"
+                    className="h-20 w-20 text-dark-primary"
                 />
             </div>
         );

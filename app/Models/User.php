@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasBasicSearch;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -10,11 +11,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\QueryBuilder\AllowedFilter;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasBasicSearch;
 
     /**
      * The attributes that are mass assignable.
@@ -52,17 +54,33 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'hashed',
     ];
 
+    protected array $searchableColumns = [
+        'first_name',
+        'last_name',
+        'user_name',
+        'phone',
+        'email',
+        'created_at',
+    ];
+
     public static function getAllowedSorts(): array
     {
         return [
             'id',
+            'first_name',
+            'last_name',
+            'user_name',
+            'phone',
+            'email',
             'created_at',
         ];
     }
 
     public static function getAllowedFilters(): array
     {
-        return [];
+        return [
+            AllowedFilter::scope('search'),
+        ];
     }
 
     public function getJWTIdentifier()

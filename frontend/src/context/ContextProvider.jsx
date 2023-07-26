@@ -4,10 +4,8 @@ import axiosFetch from "../plugins/axios.js";
 const StateContext = createContext({
     user: null,
     token: null,
-    role: null,
     setUser: () => {},
     setToken: () => {},
-    setRole: () => {},
     isMenuOpen: null,
     setIsMenuOpen: () => {},
     loading: true,
@@ -16,7 +14,6 @@ const StateContext = createContext({
 export const ContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
-    const [role, setRole] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -30,11 +27,12 @@ export const ContextProvider = ({ children }) => {
                     ] = `Bearer ${accessToken}`;
                     const response = await axiosFetch.get("/auth/user-profile");
                     setUser(response.data);
-                    setRole(response.data.role_id);
                 } else {
                     console.log("ACCESS_TOKEN not found in local storage.");
                 }
             } catch (error) {
+                setUser(null);
+                setToken(null);
                 console.error(error);
             } finally {
                 // for prevent flash of loading
@@ -61,8 +59,6 @@ export const ContextProvider = ({ children }) => {
                 setUser,
                 token,
                 setToken,
-                role,
-                setRole,
                 isMenuOpen,
                 setIsMenuOpen,
                 loading,

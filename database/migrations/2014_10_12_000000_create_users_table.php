@@ -21,7 +21,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('permission_for_email');
-            $table->foreignId('role_id')->default(3)->constrained()->cascadeOnDelete();
+            //todo add default role
+            $table->foreignId('role_id')->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });

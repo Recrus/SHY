@@ -50,10 +50,9 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User $user): JsonResponse
     {
-        //todo patch...
         $this->authorize('update', [User::class, $user, auth()->user()]);
 
-        $user->update($request->validated());
+        $user->update($request->all());
 
         return (new UserResource($user))
             ->response()

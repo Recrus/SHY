@@ -7,12 +7,17 @@ import Landing from "./views/Layouts/Landing/Landing.jsx";
 import SignUp from "./views/Layouts/SignUp/SignUp.jsx";
 import Student from "./views/Layouts/Student/Student.jsx";
 import Teacher from "./views/Layouts/Teacher/Teacher.jsx";
-import Admin from "./views/Layouts/Admin/Admin.jsx";
+import SuperAdmin from "./views/Layouts/SuperAdmin/SuperAdmin.jsx";
 import { RequireAuth } from "./hoc/RequireAuth.jsx";
 import AccessDenied from "./views/Errors/AccessDenied.jsx";
 import RequireRole from "./hoc/RequireRole.jsx";
-import Test from "./views/Test.jsx";
 import { LoggedUser } from "./hoc/LoggedUser.jsx";
+import SignOut from "./views/Errors/SignOut.jsx";
+import UserProfile from "./views/Layouts/UserProfile/UserProfile.jsx";
+import Exams from "./views/Layouts/Exams/Exams.jsx";
+import Home from "./views/Layouts/Home/Home.jsx";
+import Users from "./views/Layouts/Users/Users.jsx";
+import Test from "./views/Test.jsx";
 
 const router = createBrowserRouter([
     {
@@ -24,23 +29,55 @@ const router = createBrowserRouter([
         ),
         children: [
             {
-                path: "/admin",
+                path: "/super-admin",
                 element: (
                     <RequireRole role="1">
-                        <Admin />
+                        <SuperAdmin />
                     </RequireRole>
                 ),
+                children: [
+                    {
+                        path: "home",
+                        element: <Test />,
+                    },
+                    {
+                        path: "users",
+                        element: <Users />,
+                    },
+                    {
+                        path: "profile",
+                        element: <UserProfile />,
+                    },
+                    {
+                        path: "inbox",
+                        element: <UserProfile />,
+                    },
+                    {
+                        path: "exams",
+                        element: <Exams />,
+                    },
+                ],
             },
             {
-                path: "/teacher",
+                path: "/hr",
                 element: (
                     <RequireRole role="2">
                         <Teacher />
                     </RequireRole>
                 ),
+                children: [
+                    {
+                        path: "profile",
+                        element: <UserProfile />,
+                    },
+                    {
+                        path: "inbox",
+                        element: <UserProfile />,
+                    },
+                ],
             },
             {
-                path: "/student",
+                path: "/employee",
                 element: (
                     <RequireRole role="3">
                         <Student />
@@ -48,9 +85,12 @@ const router = createBrowserRouter([
                 ),
                 children: [
                     {
-                        path: "create",
-                        // todo edit
-                        element: <Test />,
+                        path: "profile",
+                        element: <UserProfile />,
+                    },
+                    {
+                        path: "inbox",
+                        element: <UserProfile />,
                     },
                 ],
             },
@@ -85,6 +125,10 @@ const router = createBrowserRouter([
     {
         path: "/access-denied",
         element: <AccessDenied />,
+    },
+    {
+        path: "/sign-out",
+        element: <SignOut />,
     },
     {
         path: "*",
