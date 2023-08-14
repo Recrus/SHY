@@ -72,19 +72,19 @@ const TableCreateUserForm = ({ refetchData }) => {
             <Dialog
                 open={open}
                 handler={handleOpen}
-                className="dark:bg-dark-neutral"
+                className="dark:bg-dark-neutral min-w-[90%] md:min-w-[60%] lg:min-w-[40%]"
             >
                 <DialogHeader className="dark:text-neutral">
                     Create user
                 </DialogHeader>
                 <DialogBody className="dark:text-neutral" divider>
-                    <form className="grid grid-cols-2 gap-4">
+                    <form className="grid gap-4 md:grid-cols-2">
                         <div>
                             <input
                                 type="text"
                                 ref={firstName}
                                 name="fname"
-                                className="bg-transparent text-dark-neutral border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg w-full"
+                                className="bg-transparent text-dark-neutral border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
                                 placeholder="First name"
                             />
                             {firstNameError && (
@@ -99,7 +99,7 @@ const TableCreateUserForm = ({ refetchData }) => {
                                 type="text"
                                 ref={lastName}
                                 name="lname"
-                                className="bg-transparent text-dark-neutral border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg w-full"
+                                className="bg-transparent text-dark-neutral border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
                                 placeholder="Last name"
                             />
                             {lastNameError && (
@@ -109,12 +109,12 @@ const TableCreateUserForm = ({ refetchData }) => {
                             )}
                         </div>
 
-                        <div className="col-span-2">
+                        <div className="md:col-span-2">
                             <input
                                 type="email"
                                 ref={email}
                                 name="email"
-                                className="bg-transparent text-dark-neutral border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg w-full"
+                                className="bg-transparent text-dark-neutral border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
                                 placeholder="Email"
                             />
                             {emailError && (
@@ -124,11 +124,11 @@ const TableCreateUserForm = ({ refetchData }) => {
                             )}
                         </div>
 
-                        <div className="col-span-2">
+                        <div className="md:col-span-2">
                             <input
                                 type="password"
                                 ref={password}
-                                className="bg-transparent text-dark-neutral border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg w-full"
+                                className="bg-transparent text-dark-neutral border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
                                 placeholder="Password"
                             />
                             {passwordError && (
@@ -139,7 +139,7 @@ const TableCreateUserForm = ({ refetchData }) => {
                         </div>
                     </form>
                 </DialogBody>
-                <DialogFooter>
+                <DialogFooter className="flex justify-center md:justify-end">
                     <Button
                         variant="text"
                         color="red"

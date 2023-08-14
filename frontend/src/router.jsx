@@ -31,7 +31,7 @@ const router = createBrowserRouter([
             {
                 path: "/super-admin",
                 element: (
-                    <RequireRole role="1">
+                    <RequireRole role={1}>
                         <SuperAdmin />
                     </RequireRole>
                 ),

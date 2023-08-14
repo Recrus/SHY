@@ -1,5 +1,6 @@
 import React from "react";
 import { usePaginatedSearch } from "../hooks/usePaginatedSearch.jsx";
+import {Spinner} from "@material-tailwind/react";
 
 function Test() {
     const { data, loading, setSearch } = usePaginatedSearch("/users");
@@ -8,7 +9,7 @@ function Test() {
         <div>
             <input type="search" onChange={(e) => setSearch(e.target.value)} />
             {loading ? (
-                <div>Loading...</div>
+                <Spinner />
             ) : (
                 data.data.map((item) => <div key={item.id}>{item.id}</div>)
             )}

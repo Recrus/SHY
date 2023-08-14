@@ -14,8 +14,8 @@ const CardTableHeader = ({
     };
 
     return (
-        <div className="flex items-center justify-between gap-8">
-            <div>
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row md:items-center">
+            <div className="text-center md:text-left">
                 <Typography
                     variant="h5"
                     color="blue-gray"
@@ -30,7 +30,7 @@ const CardTableHeader = ({
                     {subTitle}
                 </Typography>
             </div>
-            <div>
+            <div className="flex flex-col items-center md:block">
                 {createButton}
                 <div className="mt-6">
                     <div className="w-full md:w-72">

@@ -32,6 +32,10 @@ const DefaultLayout = () => {
                 item: "Tests",
                 route: "/super-admin/tests",
             },
+            {
+                item: "Vacancies",
+                route: "/super-admin/vacancies",
+            },
         ];
     } else if (user.role_id === 2) {
         listItems = [
@@ -75,7 +79,7 @@ const DefaultLayout = () => {
                 <div className="flex justify-center">
                     <TheNavbar listItems={listItems} />
                 </div>
-                <div className="pt-[90px] px-2 lg:pt-[120px] lg:px-4 pb-[40px]">
+                <div className="pt-[90px] px-2 lg:pt-[120px] lg:px-4 pb-[90px]">
                     <Outlet />
                 </div>
                 <div className="fixed bottom-14 right-6 max-w-[35px]">

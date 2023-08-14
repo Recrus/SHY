@@ -142,18 +142,18 @@ const UserTableRow = ({ userData, isLast, refetchData, setCurrentPage }) => {
                 <Dialog
                     open={openFirstDialog}
                     handler={handleOpenFirstDialog}
-                    className="dark:bg-dark-accent"
+                    className="dark:bg-dark-accent min-w-[90%] md:min-w-[60%] lg:min-w-[50%] xl:min-w-[40%]"
                 >
-                    <DialogHeader className="font-primary text-center dark:text-neutral">
+                    <DialogHeader className="font-primary text-lg md:text-xl text-center justify-center dark:text-neutral md:justify-normal">
                         Edit {first_name}
                     </DialogHeader>
-                    <DialogBody divider>
-                        <form className="grid grid-cols-2 grid-rows-4 gap-4 p-4 items-center dark:bg-dark-accent transition-all text-dark-accent dark:text-neutral">
+                    <DialogBody divider className="p-0">
+                        <form className="grid md:grid-cols-2 grid-rows-4 gap-4 p-4 items-center dark:bg-dark-accent transition-all text-dark-accent dark:text-neutral">
                             <label htmlFor="first_name">First name</label>
                             <Input
                                 type="text"
                                 placeholder="First name"
-                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-lg shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
+                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-sm shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
                                 labelProps={{
                                     className: "hidden",
                                 }}
@@ -168,7 +168,7 @@ const UserTableRow = ({ userData, isLast, refetchData, setCurrentPage }) => {
                             <Input
                                 type="text"
                                 placeholder="Last name"
-                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-lg shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
+                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-sm shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
                                 labelProps={{
                                     className: "hidden",
                                 }}
@@ -183,7 +183,7 @@ const UserTableRow = ({ userData, isLast, refetchData, setCurrentPage }) => {
                             <Input
                                 type="text"
                                 placeholder="User name"
-                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-lg shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
+                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-sm shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
                                 labelProps={{
                                     className: "hidden",
                                 }}
@@ -198,7 +198,7 @@ const UserTableRow = ({ userData, isLast, refetchData, setCurrentPage }) => {
                             <Input
                                 type="text"
                                 placeholder="Phone"
-                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-lg shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
+                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-sm shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
                                 labelProps={{
                                     className: "hidden",
                                 }}
@@ -213,7 +213,7 @@ const UserTableRow = ({ userData, isLast, refetchData, setCurrentPage }) => {
                             <Input
                                 type="email"
                                 placeholder="Email"
-                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-lg shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
+                                className="focus:!border-t-blue-500 focus:!border-blue-500 ring-4 ring-transparent focus:ring-blue-500/20 !border !border-blue-gray-50 bg-white shadow-sm shadow-blue-gray-900/5 placeholder:text-blue-gray-200 text-blue-gray-500 !font-primary"
                                 labelProps={{
                                     className: "hidden",
                                 }}
@@ -254,9 +254,9 @@ const UserTableRow = ({ userData, isLast, refetchData, setCurrentPage }) => {
                 <Dialog
                     open={open}
                     handler={handleOpen}
-                    className="dark:bg-dark-accent"
+                    className="dark:bg-dark-accent min-w-[90%] md:min-w-[60%] lg:min-w-[40%]"
                 >
-                    <DialogHeader className="font-primary text-center dark:text-neutral">
+                    <DialogHeader className="font-primary text-center justify-center dark:text-neutral text-lg md:text-xl">
                         Are you sure you want to delete this user?
                     </DialogHeader>
                     <DialogFooter className="flex justify-center">

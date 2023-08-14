@@ -22,7 +22,11 @@ const RequireRole = ({ role = null, children }) => {
         return <Navigate to="/login" replace state={{ from: location }} />;
     }
 
-    if (user.role_id !== parseInt(role)) {
+    if (role === null) {
+        return <div>Loading...</div>;
+    }
+
+    if (user.role_id !== role) {
         return (
             <Navigate to="/access-denied" replace state={{ from: location }} />
         );
