@@ -31,7 +31,7 @@ class Test extends Model
 
     public function questions(): BelongsToMany
     {
-        return $this->belongsToMany(Question::class)->withTimestamps();
+        return $this->belongsToMany(Question::class)->withPivot('id', 'question_id', 'test_id')->withTimestamps();
     }
 
     public function students(): BelongsToMany

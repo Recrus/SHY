@@ -13,7 +13,6 @@ const LoggedUser: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             if (user.role_id === 1) {
                 navigate("/super-admin/home");
             } else if (user.role_id === 2) {
-                //todo change to hr
                 navigate("/hr");
             } else {
                 //todo paths for reviewer and admin and else for no one
@@ -24,7 +23,7 @@ const LoggedUser: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-[100vh] bg-dark-neutral">
+            <div className="flex-center items-center h-[100vh] bg-dark-neutral">
                 <Spinner
                     color="light-blue"
                     className="h-20 w-20 text-dark-primary"

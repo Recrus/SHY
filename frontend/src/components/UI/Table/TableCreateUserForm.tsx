@@ -87,7 +87,7 @@ const TableCreateUserForm: React.FC<TableCreateUserFormProps> = ({
                                 type="text"
                                 ref={firstName}
                                 name="fname"
-                                className="bg-transparent text-dark-neutral border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
+                                className="bg-transparent text-theme border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
                                 placeholder="First name"
                             />
                             {firstNameError && (
@@ -102,7 +102,7 @@ const TableCreateUserForm: React.FC<TableCreateUserFormProps> = ({
                                 type="text"
                                 ref={lastName}
                                 name="lname"
-                                className="bg-transparent text-dark-neutral border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
+                                className="bg-transparent text-theme border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
                                 placeholder="Last name"
                             />
                             {lastNameError && (
@@ -117,7 +117,7 @@ const TableCreateUserForm: React.FC<TableCreateUserFormProps> = ({
                                 type="email"
                                 ref={email}
                                 name="email"
-                                className="bg-transparent text-dark-neutral border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
+                                className="bg-transparent text-theme border-solid border-2 border-neutral rounded p-4 2xl:placeholder:text-lg w-full"
                                 placeholder="Email"
                             />
                             {emailError && (
@@ -142,7 +142,7 @@ const TableCreateUserForm: React.FC<TableCreateUserFormProps> = ({
                         </div>
                     </form>
                 </DialogBody>
-                <DialogFooter className="flex justify-center md:justify-end">
+                <DialogFooter className="flex-center md:justify-end">
                     <Button
                         variant="text"
                         color="red"

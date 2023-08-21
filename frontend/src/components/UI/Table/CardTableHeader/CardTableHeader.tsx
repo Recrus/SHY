@@ -38,11 +38,12 @@ const CardTableHeader: React.FC<CardTableHeaderProps> = ({
                         <Input
                             crossOrigin="anonymous"
                             label="Search"
+                            color="indigo"
                             labelProps={{
-                                className: "!text-primary !text-[12px]",
+                                className: "!text-silver",
                             }}
                             icon={
-                                <MagnifyingGlassIcon className="h-5 w-5 text-primary" />
+                                <MagnifyingGlassIcon className="h-5 w-5 text-silver" />
                             }
                             className="text-primary font-primary"
                             value={search}

@@ -6,7 +6,7 @@ import {
     Collapse,
 } from "@material-tailwind/react";
 import logo from "../../../media/icons/logo-no-background.png";
-import ProfileMenu from "../ProfileMenu/ProfileMenu";
+import ProfileMenu from "../../../views/Layouts/ProfileMenu/ProfileMenu";
 import { NavLink } from "react-router-dom";
 import { TheNavbarProps } from "../../../../types/types";
 
@@ -26,7 +26,7 @@ const TheNavbar: React.FC<TheNavbarProps> = ({ listItems }) => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-primary font-medium text-lg text-gray mb-4 lg:text-base lg:mb-0 dark:text-neutral"
+                className="p-1 font-primary font-medium text-lg text-theme mb-4 lg:text-base lg:mb-0"
                 key={index}
             >
                 <NavLink

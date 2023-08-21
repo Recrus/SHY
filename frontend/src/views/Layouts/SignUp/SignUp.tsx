@@ -68,14 +68,14 @@ function SignUp() {
 
     return (
         <div className="h-screen w-screen dark:bg-dark-blue ease-in-out duration-300">
-            <div className="max-w-[370px] mx-auto flex justify-center flex-col font-primary pt-20 md:max-w-[680px] 2xl:max-w-[800px]">
+            <div className="max-w-[370px] mx-auto flex-center flex-col font-primary pt-20 md:max-w-[680px] 2xl:max-w-[800px]">
                 <div className="flex items-center flex-col mb-[20px]">
                     <img
                         src={logo}
                         alt="#"
                         className="h-[125px] w-[125px] mr-5 2xl:h-[150px] 2xl:w-[150px]"
                     />
-                    <div className="text-lg dark:text-gray">Sign up</div>
+                    <div className="text-lg text-theme">Sign up</div>
                 </div>
                 <form className="grid grid-cols-2 gap-7">
                     <input
@@ -131,30 +131,30 @@ function SignUp() {
                     )}
                 </form>
                 <div className="flex justify-around items-center mt-[20px]">
-                    {/*@ts-ignore*/}
                     <Checkbox
+                        crossOrigin="anonymous"
                         defaultChecked
                         inputRef={permission}
                         className="bg-neutral checked:bg-accent dark:checked:bg-dark-purple"
                     />
-                    <div className="text-[12px] md:text-sm 2xl:text-base dark:text-gray">
+                    <div className="text-[12px] md:text-sm 2xl:text-base text-theme">
                         I want to receive inspiration, marketing promotions and
                         updates via email.
                     </div>
                 </div>
                 <button
                     onClick={submitHandler}
-                    className="rounded bg-accent text-neutral uppercase p-3 text-base mt-[20px] drop-shadow-md 2xl:text-lg dark:bg-dark-purple"
+                    className="rounded bg-accent text-theme uppercase p-3 text-base mt-[20px] drop-shadow-md 2xl:text-lg dark:bg-dark-purple"
                 >
                     Sign up
                 </button>
                 <Link
                     to="/login"
-                    className="text-gray no-underline self-end mt-[20px] text-[12px] cursor-pointer md:text-sm 2xl:text-base"
+                    className="text-theme no-underline self-end mt-[20px] text-[12px] cursor-pointer md:text-sm 2xl:text-base opacity-50"
                 >
                     Already have an account? Sign in
                 </Link>
-                <div className="text-[10px] text-gray text-center mt-[34px] md:text-[12px]">
+                <div className="text-[10px] text-theme text-center mt-[34px] md:text-[12px] opacity-50">
                     Copyright © SHY {new Date().getFullYear()}
                 </div>
                 <div className="absolute top-10 right-10">

@@ -16,17 +16,12 @@ import {
 } from "@heroicons/react/24/outline";
 import { useStateContext } from "../../../context/StateContext";
 import axiosFetch from "../../../plugins/axios";
-import { NavLink } from "react-router-dom";
-import { HeroIcon } from "../../../../types/types";
-
-interface ProfileMenuItems {
-    label: string;
-    icon: HeroIcon;
-    route: string;
-}
+import { NavLink, useNavigate } from "react-router-dom";
+import { ProfileMenuItems } from "../../../../types/types";
 
 const ProfileMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const navigate = useNavigate();
     const closeMenu = () => setIsMenuOpen(false);
     const { user, token, setToken, setUser } = useStateContext();
     let route: string;
@@ -58,7 +53,7 @@ const ProfileMenu = () => {
         {
             label: "Sign Out",
             icon: PowerIcon,
-            route: "/sign-out",
+            route: "",
         },
     ];
 
@@ -66,12 +61,10 @@ const ProfileMenu = () => {
         e.preventDefault();
 
         try {
-            const response = await axiosFetch.post("/auth/logout", {
+            navigate("/sign-out");
+            await axiosFetch.post("/auth/logout", {
                 token,
             });
-
-            //todo alert message before redirect
-            // const data = response.data;
 
             setToken(null);
             setUser(null);

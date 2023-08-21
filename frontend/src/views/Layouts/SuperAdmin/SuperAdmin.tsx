@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const SuperAdmin = () => {
     return (
-        <div className="dark:text-primary">
+        <div className="text-theme">
             <Outlet />
         </div>
     );

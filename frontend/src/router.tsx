@@ -15,9 +15,13 @@ import { LoggedUser } from "./hoc/LoggedUser";
 import SignOut from "./views/Errors/SignOut";
 import UserProfile from "./views/Layouts/UserProfile/UserProfile";
 import Exams from "./views/Layouts/Exams/Exams";
-// import Home from "./views/Layouts/Home/Home";
+import Home from "./views/Layouts/Home/Home";
 import Users from "./views/Layouts/Users/Users";
-import Test from "./views/Test";
+import EditExam from "./views/Layouts/Exams/EditExam";
+import Tests from "./views/Layouts/Tests/Tests";
+import TestOverview from "./views/Layouts/Tests/TestOverview";
+import QuestionEdit from "./views/Layouts/Tests/Question/QuestionEdit";
+import TestResult from "./views/Layouts/Tests/TestResult";
 
 const router = createBrowserRouter([
     {
@@ -38,11 +42,31 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: "home",
-                        element: <Test />,
+                        element: <Home />,
                     },
                     {
                         path: "users",
                         element: <Users />,
+                    },
+                    {
+                        path: "exams",
+                        element: <Exams />,
+                    },
+                    {
+                        path: "tests",
+                        element: <Tests />,
+                    },
+                    {
+                        path: "tests/:testId",
+                        element: <TestOverview />,
+                    },
+                    {
+                        path: "tests/:testId/question/:questionId/edit",
+                        element: <QuestionEdit />,
+                    },
+                    {
+                        path: "exams/:examId/edit",
+                        element: <EditExam />,
                     },
                     {
                         path: "profile",
@@ -51,10 +75,6 @@ const router = createBrowserRouter([
                     {
                         path: "inbox",
                         element: <UserProfile />,
-                    },
-                    {
-                        path: "exams",
-                        element: <Exams />,
                     },
                 ],
             },
@@ -85,8 +105,32 @@ const router = createBrowserRouter([
                 ),
                 children: [
                     {
+                        path: "home",
+                        element: <Exams />,
+                    },
+                    {
                         path: "profile",
                         element: <UserProfile />,
+                    },
+                    {
+                        path: "exams",
+                        element: <Exams />,
+                    },
+                    {
+                        path: "tests",
+                        element: <Tests />,
+                    },
+                    {
+                        path: "tests/:testId",
+                        element: <TestOverview />,
+                    },
+                    {
+                        path: "tests/:testId/result",
+                        element: <TestResult />,
+                    },
+                    {
+                        path: "tests/:testId/question/:questionId/edit",
+                        element: <QuestionEdit />,
                     },
                     {
                         path: "inbox",

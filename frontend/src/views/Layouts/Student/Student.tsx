@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function Student() {
     return (
-        <div className="dark:text-primary">
+        <div className="text-theme">
             <Outlet />
         </div>
     );

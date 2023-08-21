@@ -6,12 +6,13 @@ use App\Models\User;
 
 class ExamPolicy
 {
+    //todo delete unused props
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return $user->role_id === 1;
+        return true;
     }
 
     /**
@@ -19,7 +20,7 @@ class ExamPolicy
      */
     public function view(User $user): bool
     {
-        return $user->role_id === 1;
+        return true;
     }
 
     /**
@@ -42,6 +43,11 @@ class ExamPolicy
      * Determine whether the user can delete the model.
      */
     public function delete(User $user): bool
+    {
+        return $user->role_id === 1;
+    }
+
+    public function userExamsAnalytics(User $user): bool
     {
         return $user->role_id === 1;
     }

@@ -92,14 +92,14 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
                         <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal dark:text-neutral"
+                            className="font-normal text-theme"
                         >
                             {`${id}. ${first_name} ${last_name}`}
                         </Typography>
                         <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal opacity-70 dark:text-neutral"
+                            className="font-normal opacity-70 text-theme"
                         >
                             {email}
                         </Typography>
@@ -111,7 +111,7 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
                     <Typography
                         variant="small"
                         color="blue-gray"
-                        className="font-normal dark:text-neutral"
+                        className="font-normal text-theme"
                     >
                         {user_name === null ? "–" : user_name}
                     </Typography>
@@ -122,7 +122,7 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
                     <Typography
                         variant="small"
                         color="blue-gray"
-                        className="font-normal dark:text-neutral"
+                        className="font-normal text-theme"
                     >
                         {phone === null ? "-" : phone}
                     </Typography>
@@ -132,7 +132,7 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
                 <Typography
                     variant="small"
                     color="blue-gray"
-                    className="font-normal dark:text-neutral"
+                    className="font-normal text-theme"
                 >
                     {new Date(created_at).toLocaleDateString()}
                 </Typography>
@@ -150,11 +150,11 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
                     handler={handleOpenFirstDialog}
                     className="dark:bg-dark-accent min-w-[90%] md:min-w-[60%] lg:min-w-[50%] xl:min-w-[40%]"
                 >
-                    <DialogHeader className="font-primary text-lg md:text-xl text-center justify-center dark:text-neutral md:justify-normal">
+                    <DialogHeader className="font-primary text-lg md:text-xl text-center justify-center text-theme md:justify-normal">
                         Edit {first_name}
                     </DialogHeader>
                     <DialogBody divider className="p-0">
-                        <form className="grid md:grid-cols-2 grid-rows-4 gap-4 p-4 items-center dark:bg-dark-accent transition-all text-dark-accent dark:text-neutral">
+                        <form className="grid md:grid-cols-2 grid-rows-4 gap-4 p-4 items-center dark:bg-dark-accent transition-all text-theme">
                             <label htmlFor="first_name">First name</label>
                             <Input
                                 crossOrigin="anonymous"
@@ -237,7 +237,7 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
                             />
                         </form>
                     </DialogBody>
-                    <DialogFooter className="flex justify-center">
+                    <DialogFooter className="flex-center">
                         <Button
                             variant="text"
                             color="red"
@@ -267,10 +267,10 @@ const UserTableRow: React.FC<UserTableRowProps> = ({
                     handler={handleOpen}
                     className="dark:bg-dark-accent min-w-[90%] md:min-w-[60%] lg:min-w-[40%]"
                 >
-                    <DialogHeader className="font-primary text-center justify-center dark:text-neutral text-lg md:text-xl">
+                    <DialogHeader className="font-primary text-center justify-center text-theme text-lg md:text-xl">
                         Are you sure you want to delete this user?
                     </DialogHeader>
-                    <DialogFooter className="flex justify-center">
+                    <DialogFooter className="justify-center">
                         <Button
                             variant="text"
                             color="red"

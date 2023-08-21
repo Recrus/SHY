@@ -10,8 +10,13 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
         "@heroicons/react": "^2.0.18",
         "@material-tailwind/react": "^2.0.7",
+        "@mui/material": "^5.14.5",
+        "@nivo/core": "^0.83.0",
+        "@nivo/radar": "^0.83.0",
         "@types/jest": "^29.5.3",
         "@types/node": "^20.5.0",
         "jwt-decode": "^3.1.2",

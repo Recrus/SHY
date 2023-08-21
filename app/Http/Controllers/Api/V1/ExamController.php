@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Exam\ExamRequest;
 use App\Http\Resources\Exam\ExamResource;
 use App\Models\Exam;
+use App\Models\UserExam;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class ExamController extends Controller
@@ -65,5 +67,37 @@ class ExamController extends Controller
         $exam->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);
+    }
+
+    public function userExamsAnalytics(): JsonResponse
+    {
+        $this->authorize('userExamsAnalytics', Exam::class);
+
+        $exams = Exam::all();
+
+        $data = [];
+
+        foreach ($exams as $exam) {
+            $averageMark = (float) UserExam::where('exam_id', $exam->id)
+                ->whereNotNull('mark')
+                ->avg('mark');
+
+            $examTotalAttempts = UserExam::where('exam_id', $exam->id)->count();
+
+            $data[] = [
+                'exam_id' => $exam->id,
+                'average_mark' => $averageMark,
+                'exam_total_attempts' => $examTotalAttempts,
+            ];
+        }
+
+        $totalAttempts = UserExam::count();
+        $totalSuccessRate = UserExam::where('is_accepted', true)->count();
+
+        return response()->json([
+            'exams' => $data,
+            'total_attempts' => $totalAttempts,
+            'total_success_rate' => $totalSuccessRate,
+        ]);
     }
 }

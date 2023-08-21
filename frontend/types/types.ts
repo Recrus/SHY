@@ -1,9 +1,24 @@
-import React, { Dispatch, ReactNode, SetStateAction } from "react";
+import React, {
+    ChangeEvent,
+    Dispatch,
+    ReactNode,
+    RefObject,
+    SetStateAction,
+} from "react";
+
+//Utility types
+
+export type SetState<T> = Dispatch<SetStateAction<T>>;
+type SVGProps = React.PropsWithoutRef<React.ComponentProps<"svg">>;
+interface DialogProps {
+    open: boolean;
+    handleOpen: () => void;
+}
 
 //HeroIcons type
 
 export type HeroIcon = React.ComponentType<
-    React.PropsWithoutRef<React.ComponentProps<"svg">> & {
+    SVGProps & {
         title?: string | undefined;
         titleId?: string | undefined;
     }
@@ -27,10 +42,10 @@ export interface UserData {
 export interface StateContextType {
     user: UserData | null;
     token: string | null;
-    setUser: (user: UserData | null) => void;
-    setToken: (token: string | null) => void;
+    setUser: SetState<UserData | null>;
+    setToken: (newToken: string | null) => void;
     isMenuOpen: boolean;
-    setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
+    setIsMenuOpen: SetState<boolean>;
     loading: boolean;
 }
 
@@ -44,7 +59,7 @@ export interface MetaData {
     current_page: number;
     from: number;
     last_page: number;
-    links: Array<{ [key: string]: string }>;
+    links: Record<string, string>[];
     path: string;
     per_page: number;
     to: number;
@@ -59,24 +74,22 @@ export interface PaginatedSearchData {
 export interface PaginatedSearchHook {
     data: PaginatedSearchData;
     loading: boolean;
-    setLoading: Dispatch<SetStateAction<boolean>>;
-    setSearch: Dispatch<SetStateAction<string>>;
-    setPerPage: Dispatch<SetStateAction<number>>;
+    setLoading: SetState<boolean>;
+    setSearch: SetState<string>;
+    setPerPage: SetState<number>;
     sortKey?: string;
-    setSortKey: Dispatch<SetStateAction<string>>;
+    setSortKey: SetState<string>;
     sortDirection?: string;
-    setSortDirection: Dispatch<SetStateAction<string>>;
+    setSortDirection: SetState<string>;
     dataVersion: number;
-    setDataVersion: Dispatch<SetStateAction<number>>;
+    setDataVersion: SetState<number>;
 }
 
 //axios types
 
 export interface Config {
     baseURL: string;
-    headers: {
-        "Content-Type": string;
-    };
+    headers: Record<string, string>;
 }
 
 //useDarkSide types
@@ -154,7 +167,7 @@ export interface TheButtonProps {
 
 export interface BurgerMenuProps {
     isOpen: boolean;
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsOpen: SetState<boolean>;
 }
 
 //Users component types
@@ -174,8 +187,8 @@ export type TableHead = string[];
 export interface TableHeaderProps {
     sortKey?: string;
     sortDirection?: string;
-    setSortDirection: Dispatch<SetStateAction<string>>;
-    setSortKey: Dispatch<SetStateAction<string>>;
+    setSortDirection: SetState<string>;
+    setSortKey: SetState<string>;
     TABLE_HEAD: TableHead;
     sortKeys: SortKeys;
 }
@@ -186,7 +199,7 @@ export interface CardTableHeaderProps {
     title: string;
     subTitle: string;
     search: string;
-    setSearch: Dispatch<SetStateAction<string>>;
+    setSearch: SetState<string>;
     createButton: React.ReactNode;
 }
 
@@ -210,7 +223,7 @@ export interface UserTableRowProps {
     userData: UserData;
     isLast: boolean;
     refetchData: () => void;
-    setCurrentPage: Dispatch<SetStateAction<number>>;
+    setCurrentPage: SetState<number>;
 }
 
 export interface InitialFormDataUserRow {
@@ -234,10 +247,195 @@ export interface InitialFormDataProfile {
     permission_for_email?: boolean;
 }
 
+//ProfileMenu types
+
+export interface ProfileMenuItems {
+    label: string;
+    icon: HeroIcon;
+    route: string;
+}
+
 //Pagination types
 
 export interface PaginationProps {
     currentPage: number;
-    setPage: Dispatch<SetStateAction<number>>;
+    setPage: SetState<number>;
     totalPages: number;
+}
+
+//Exams types
+
+export interface Exam {
+    id: number;
+    name: string;
+    description: string;
+    reviewer_id: number;
+    created_at: string;
+    updated_at: string;
+    avgMark: number | null;
+    colorClass?: string;
+}
+
+export type RadarDataPoint = {
+    [key: string]: string | number;
+};
+
+interface BaseExamAnalytics {
+    exam_id: number;
+}
+
+export interface ExamAnalyticsAdmin extends BaseExamAnalytics {
+    average_mark: number;
+    exam_total_attempts: number;
+}
+
+export interface ExamAnalyticsEmployee extends BaseExamAnalytics {
+    id: number;
+    mark: number;
+    is_accepted: number;
+    junior_id: number;
+    review_text: string;
+    reviewed_at: string;
+}
+
+export interface AnalyticsDataAdmin {
+    exams: ExamAnalyticsAdmin[];
+    total_attempts: number;
+    total_success_rate: number;
+}
+
+//RadarChart types
+
+export interface RadarChartProps {
+    data: RadarDataPoint[];
+}
+
+//ExamOverview types
+
+export interface ExamOverviewProps {
+    loading: boolean;
+    avgPerformance: number | undefined;
+    totalAttempts: number;
+    passedRate: number;
+    radarData: RadarDataPoint[];
+    role?: number;
+    setRefetch: SetState<number>;
+}
+
+//ExamCard types
+
+export interface ExamCardProps {
+    exam: Exam;
+    setRefetch: SetState<number>;
+}
+
+//EditExam types
+
+export interface LinkData {
+    id: number;
+    link: string;
+    reviewer: UserData;
+    employee: UserData;
+    exam_id: number;
+    created_at: string;
+}
+
+//ExamTableRow types
+
+export interface ExamTableRowProps {
+    id: number;
+    exam_id: number;
+    classes: string;
+    link: string;
+    reviewer: UserData;
+    employee: UserData;
+    reviewersData: UserData[];
+    setRefetch: SetState<number>;
+}
+
+export interface initialFromDataExamEdit {
+    reviewer_id: number | null;
+    employee_id: number | null;
+    link: string;
+    exam_id: number;
+}
+
+//EditExamDialog types
+
+export interface EditExamDialogProps extends DialogProps {
+    select: string | undefined;
+    handler: (value: string | undefined) => void;
+    reviewersData: UserData[];
+    formData: initialFromDataExamEdit;
+    handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    handleDiscardChanges: () => void;
+    saveButtonDisabled: boolean;
+    handleSaveChanges: () => Promise<void>;
+}
+
+//CreateExamLinkDialog types
+
+export interface CreateExamLinkDialogProps extends DialogProps {
+    employeesData: UserData[];
+    setRefetch: SetState<number>;
+    reviewersData: UserData[];
+    exam_id: number;
+}
+
+//ExamCreateDialog types
+
+export interface ExamCreateDialogProps extends DialogProps {
+    name: RefObject<HTMLInputElement>;
+    description: RefObject<HTMLInputElement>;
+    handleSubmit: () => Promise<void>;
+    nameError: string;
+    descriptionError: string;
+}
+
+//Tests types
+
+export interface Test {
+    id: number;
+    name: string;
+    description: string;
+    mark?: number;
+    is_passed?: number;
+}
+
+//TestOverview types
+
+export interface Question {
+    id: number;
+    name: string;
+    description: string;
+}
+
+export interface Questions {
+    id: number;
+    test_id: number;
+    question: Question;
+}
+
+//QuestionTableRow types
+
+export interface QuestionTableRowProps {
+    classes: string;
+    question: Question;
+}
+
+//QuestionEdit types
+
+export interface Answer {
+    id: number;
+    text: string;
+    answer: boolean;
+    question_id: number;
+}
+
+//QuestionEditDialog types
+
+export interface QuestionEditDialogProps {
+    answer: Answer;
+    setRefetch: SetState<number>;
+    correctAnswerCount: number;
 }

@@ -11,7 +11,7 @@ const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-[100vh] bg-dark-neutral">
+            <div className="flex-center items-center h-[100vh] bg-dark-neutral">
                 <Spinner
                     color="light-blue"
                     className="h-20 w-20 text-dark-primary"

@@ -2,7 +2,7 @@ import classes from "../views/Layouts/Login/Login.module.css";
 import React from "react";
 
 export const visibilityHandler = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
 ) => {
     e.preventDefault();
     const target = e.target as HTMLButtonElement;

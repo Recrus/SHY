@@ -93,7 +93,7 @@ const Landing = () => {
             </div>
             <main
                 className={
-                    classes.main + " dark:text-neutral ease-in-out duration-300"
+                    classes.main + " text-theme ease-in-out duration-300"
                 }
             >
                 <div className={classes.goalContainer}>
@@ -122,7 +122,7 @@ const Landing = () => {
                         It&apos;s a simple idea: you look for a job, we find
                         employers who need you.
                     </div>
-                    <div className="pt-10 flex justify-center">
+                    <div className="pt-10 flex-center">
                         <TheTimeline props={items} />
                     </div>
                 </div>

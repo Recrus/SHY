@@ -22,7 +22,7 @@ class QuestionTestController extends Controller
 
         $itemsPerPage = $request->input('itemsPerPage', self::ITEMS_PER_PAGE);
 
-        $builder = QueryBuilder::for($test->questions())
+        $builder = QueryBuilder::for($test->questions()->with('tests.questions'))
             ->defaultSort('id')
             ->allowedSorts(Test::getAllowedSorts())
             ->allowedFilters(Test::getAllowedFilters())

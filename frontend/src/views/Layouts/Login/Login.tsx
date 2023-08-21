@@ -75,10 +75,10 @@ const Login = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <button
+                        <div
                             className={classes.notVisible}
                             onClick={visibilityHandler}
-                        ></button>
+                        ></div>
                     </div>
                     <button className={classes.button} type="submit">
                         Login

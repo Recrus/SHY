@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Answer\AnswerUserResource;
 use App\Http\Resources\User\UserResource;
 use App\Models\Answer;
+use App\Models\AnswerUser;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -40,10 +41,12 @@ class AnswerUserController extends Controller
             $answerId = $answer['id'];
             $answerFields = $answer['fields'];
 
-            $answerData[$answerId] = $answerFields;
+            if (!$user->answers()->where('test_id', $answerFields['test_id'])->exists()) {
+                $answerData[$answerId] = $answerFields;
+            }
         }
 
-        $user->answers()->sync($answerData);
+        $user->answers()->syncWithoutDetaching($answerData);
 
         return (new UserResource($user))
             ->response()

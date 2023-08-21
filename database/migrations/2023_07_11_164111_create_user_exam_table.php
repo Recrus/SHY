@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_exam', function (Blueprint $table) {
             $table->id();
-            $table->string('mark')->nullable();
+            $table->integer('mark')->nullable();
             $table->string('review_text')->nullable();
             $table->timestamp('reviewed_at')->nullable();
             $table->boolean('is_accepted')->nullable();

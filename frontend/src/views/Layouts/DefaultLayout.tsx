@@ -58,7 +58,7 @@ const DefaultLayout = () => {
         listItems = [
             {
                 item: "Home",
-                route: "/employee",
+                route: "/employee/home",
             },
             {
                 item: "Exams",
@@ -78,7 +78,7 @@ const DefaultLayout = () => {
     return (
         <div className="dark:bg-dark-primary transition-all">
             <div className="mx-auto xl:max-w-[1440px]">
-                <div className="flex justify-center">
+                <div className="flex-center">
                     <TheNavbar listItems={listItems} />
                 </div>
                 <div className="pt-[90px] px-2 lg:pt-[120px] lg:px-4 pb-[90px]">

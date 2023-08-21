@@ -16,6 +16,7 @@ class UserExamFactory extends Factory
      */
     public function definition(): array
     {
+        //todo accept if mark is up 4
         return [
             'review_text' => fake()->text(),
             'reviewed_at' => now(),
