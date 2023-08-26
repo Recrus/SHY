@@ -1,13 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { Typography } from "@material-tailwind/react";
 import { QuestionTableRowProps } from "../../../../types/types";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
-const QuestionTableRow: React.FC<QuestionTableRowProps> = ({
-    classes,
-    question,
-}) => {
+const QuestionTableRow: FC<QuestionTableRowProps> = ({ classes, question }) => {
     return (
         <tr>
             <td className={classes}>

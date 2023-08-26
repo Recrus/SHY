@@ -1,9 +1,9 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, FC } from "react";
 import { Input, Typography } from "@material-tailwind/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline/index.js";
 import { CardTableHeaderProps } from "../../../../../types/types";
 
-const CardTableHeader: React.FC<CardTableHeaderProps> = ({
+const CardTableHeader: FC<CardTableHeaderProps> = ({
     title,
     subTitle,
     search,
@@ -20,14 +20,11 @@ const CardTableHeader: React.FC<CardTableHeaderProps> = ({
                 <Typography
                     variant="h5"
                     color="blue-gray"
-                    className="dark:text-neutral font-primary"
+                    className="text-theme"
                 >
                     {title}
                 </Typography>
-                <Typography
-                    color="gray"
-                    className="mt-1 font-primary text-primary dark:text-neutral"
-                >
+                <Typography color="gray" className="mt-1 text-primary">
                     {subTitle}
                 </Typography>
             </div>
@@ -45,7 +42,7 @@ const CardTableHeader: React.FC<CardTableHeaderProps> = ({
                             icon={
                                 <MagnifyingGlassIcon className="h-5 w-5 text-silver" />
                             }
-                            className="text-primary font-primary"
+                            className="text-theme"
                             value={search}
                             onChange={handleSearchChange}
                         />

@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import axiosFetch from "../plugins/axios";
 import { UserData, ContextProviderProps } from "../../types/types";
 import { StateContext } from "./StateContext";
 
-export const ContextProvider: React.FC<ContextProviderProps> = ({
-    children,
-}) => {
+export const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
     const [user, setUser] = useState<UserData | null>(null);
     const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
     const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -84,15 +84,15 @@ const ProfileMenu = () => {
                     <Avatar
                         variant="circular"
                         size="sm"
-                        className="border border-blue-500 p-0.5 w-16 h-16"
+                        className="border border-indigo-500 p-0.5 w-16 h-16"
                         src="https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette.png"
                     />
-                    <div className="normal-case px-1 font-primary font-normal text-gray dark:text-neutral tracking-wide">
+                    <div className="normal-case px-1 font-normal text-theme tracking-wide">
                         {user?.first_name}
                     </div>
                     <ChevronDownIcon
                         strokeWidth={2.5}
-                        className={`h-5 w-5 transition-transform text-gray dark:text-neutral ${
+                        className={`h-5 w-5 transition-transform text-theme ${
                             isMenuOpen ? "rotate-180" : ""
                         }`}
                     />
@@ -119,7 +119,7 @@ const ProfileMenu = () => {
                             })}
                             <NavLink
                                 className={({ isActive }) =>
-                                    `font-primary font-normal text-base w-full h-full ${
+                                    `font-normal text-base w-full h-full ${
                                         isActive ? "text-primary" : ""
                                     }
                                     ${isLastItem ? "!text-amber-400" : ""}`

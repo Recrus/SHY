@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useStateContext } from "../context/StateContext";
 import { Spinner } from "@material-tailwind/react";
 import { RequireRoleProps } from "../../types/types";
 
-const RequireRole: React.FC<RequireRoleProps> = ({ role = null, children }) => {
+const RequireRole: FC<RequireRoleProps> = ({ role = null, children }) => {
     const location = useLocation();
     const { user, loading } = useStateContext();
 

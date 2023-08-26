@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class ExamLinkController extends Controller
@@ -31,9 +32,27 @@ class ExamLinkController extends Controller
 
     public function store(ExamLinkRequest $request): JsonResponse
     {
-        $this->authorize('create', ExamLink::class);
+        $user = auth()->user();
+        $this->authorize('create', [ExamLink::class, $user]);
 
-        $examLink = ExamLink::create($request->validated());
+        $existingLink = ExamLink::where('employee_id', $user->id)
+            ->where('exam_id', $request->input('exam_id'))
+            ->first();
+
+        if ($existingLink) {
+            return response()->json(['error' => 'Link to this exam already exists for this user.'], Response::HTTP_CONFLICT);
+        }
+
+        $mockLink = 'https://example.com/exam/' . Str::random(10);
+
+        $data = $request->validated();
+        $data['link'] = $mockLink;
+
+        if ($user->role_id === 3) {
+            unset($data['reviewer_id']);
+        }
+
+        $examLink = ExamLink::create($data);
 
         return (new ExamLinkResource($examLink))
             ->response()

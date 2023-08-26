@@ -21,11 +21,16 @@ class ExamLinkRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'link' => ['required', 'string'],
-            'reviewer_id' => ['required', 'integer'],
-            'employee_id' => ['required', 'integer'],
-            'exam_id' => ['required', 'integer'],
+        $rules = [
+            'employee_id' => 'required|integer',
+            'exam_id' => 'required|integer',
         ];
+
+        if (auth()->user()->role_id === 1) {
+            $rules['reviewer_id'] = 'required|integer';
+            $rules['link'] = 'required|string';
+        }
+
+        return $rules;
     }
 }

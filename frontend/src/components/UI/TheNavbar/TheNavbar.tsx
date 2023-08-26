@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
     Navbar,
     Typography,
@@ -10,7 +10,7 @@ import ProfileMenu from "../../../views/Layouts/ProfileMenu/ProfileMenu";
 import { NavLink } from "react-router-dom";
 import { TheNavbarProps } from "../../../../types/types";
 
-const TheNavbar: React.FC<TheNavbarProps> = ({ listItems }) => {
+const TheNavbar: FC<TheNavbarProps> = ({ listItems }) => {
     const [openNav, setOpenNav] = React.useState(false);
 
     React.useEffect(() => {
@@ -26,7 +26,7 @@ const TheNavbar: React.FC<TheNavbarProps> = ({ listItems }) => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-primary font-medium text-lg text-theme mb-4 lg:text-base lg:mb-0"
+                className="p-1 font-medium text-lg text-theme mb-4 lg:text-base lg:mb-0"
                 key={index}
             >
                 <NavLink
@@ -53,24 +53,20 @@ const TheNavbar: React.FC<TheNavbarProps> = ({ listItems }) => {
     return (
         <>
             <Navbar className="fixed top z-10 h-max d-flex sm:max-w-[1440px] border-none rounded-none py-2 px-4 lg:px-8 lg:py-4 dark:bg-dark-accent transition-all">
-                <div className="flex items-center justify-between text-gray">
+                <div className="flex items-center justify-between">
                     <Typography
                         as="a"
                         href="#"
-                        className="mr-4 cursor-pointer py-1.5 font-medium"
+                        className="mr-4 cursor-pointer py-1.5"
                     >
-                        <img
-                            src={logo}
-                            alt="#"
-                            className="h-[50px] lg:h-[70px]"
-                        />
+                        <img src={logo} alt="#" className="h-16" />
                     </Typography>
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>
                         <ProfileMenu />
                         <IconButton
                             variant="text"
-                            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+                            className="ml-auto h-6 w-6 hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
                             ripple={false}
                             onClick={() => setOpenNav(!openNav)}
                         >

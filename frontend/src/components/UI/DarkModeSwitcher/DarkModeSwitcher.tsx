@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import useDarkSide from "../../../hooks/useDarkSide";
 import { DarkModeSwitcherProps } from "../../../../types/types";
 
-const DarkModeSwitcher: React.FC<DarkModeSwitcherProps> = ({
+const DarkModeSwitcher: FC<DarkModeSwitcherProps> = ({
     sunColor,
     moonColor,
 }) => {

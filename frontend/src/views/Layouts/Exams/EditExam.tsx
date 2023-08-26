@@ -3,25 +3,22 @@ import { useLocation } from "react-router-dom";
 import { Exam, LinkData, UserData } from "../../../../types/types";
 import axiosFetch from "../../../plugins/axios";
 import { Button, Typography } from "@material-tailwind/react";
-import ExamTableRow from "../../../components/UI/Table/ExamTableRow/ExamTableRow";
-import ExamRowSkeleton from "../../../components/UI/Table/ExamTableRow/ExamRowSkeleton";
+import ExamTableRow from "../../../components/UI/Table/TableRows/ExamTableRow/ExamTableRow";
+import RowSkeleton from "../../../components/UI/Table/RowSkeleton";
 import { useStateContext } from "../../../context/StateContext";
-import CreateExamLinkDialog from "../../../components/UI/Table/ExamTableRow/CreateExamLinkDialog";
+import CreateExamLinkDialog from "../../../components/UI/Table/TableRows/ExamTableRow/CreateExamLinkDialog";
 
 const EditExam = () => {
     const { state } = useLocation();
     const { user } = useStateContext();
     const exam: Exam = state.exam;
     const [links, setLinks] = useState<LinkData[]>([]);
-    const TABLE_HEAD = ["Name of reviewer", "Link", ""];
     const [loading, setLoading] = useState(true);
     const [reviewers, setReviewers] = useState<UserData[]>([]);
     const [employees, setEmployees] = useState<UserData[]>([]);
     const [refetch, setRefetch] = useState(1);
-    const [openCreateDialog, setOpenCreateDialog] = useState(false);
+    const TABLE_HEAD = ["Reviewer", "Link", "Employee", ""];
     const PLACEHOLDER_ROWS = 5;
-
-    const handleOpenCreateDialog = () => setOpenCreateDialog(!openCreateDialog);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -76,38 +73,16 @@ const EditExam = () => {
                 <div className="flex justify-between items-center p-4 shadow-md rounded-t">
                     <div className="mb-2">Existing exams</div>
                     {user?.role_id === 1 ? (
-                        <div>
-                            <Button
-                                variant="text"
-                                className="text-sm p-1 hover:text-primary"
-                                onClick={handleOpenCreateDialog}
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="w-6 h-6"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M12 4.5v15m7.5-7.5h-15"
-                                    />
-                                </svg>
-                            </Button>
+                        <>
                             <CreateExamLinkDialog
                                 reviewersData={reviewers}
-                                open={openCreateDialog}
-                                handleOpen={handleOpenCreateDialog}
                                 employeesData={employees}
                                 setRefetch={setRefetch}
                                 exam_id={exam.id}
                             />
-                        </div>
+                        </>
                     ) : (
-                        <div></div>
+                        <></>
                     )}
                 </div>
                 <table className="w-full min-w-max table-auto text-left shadow-md rounded">
@@ -133,7 +108,7 @@ const EditExam = () => {
                             ? Array.from(
                                   { length: PLACEHOLDER_ROWS },
                                   (_, index) => (
-                                      <ExamRowSkeleton
+                                      <RowSkeleton
                                           key={index}
                                           length={PLACEHOLDER_ROWS}
                                           index={index}

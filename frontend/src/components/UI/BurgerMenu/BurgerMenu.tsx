@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import classes from "./BurgerMenu.module.css";
 import facebook from "../../../media/icons/Login/facebook.svg";
 import instagram from "../../../media/icons/Login/instagram.svg";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import TheButton from "../TheButton/TheButton";
 import { BurgerMenuProps } from "../../../../types/types";
 
-const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, setIsOpen }) => {
+const BurgerMenu: FC<BurgerMenuProps> = ({ isOpen, setIsOpen }) => {
     return (
         <div
             className={

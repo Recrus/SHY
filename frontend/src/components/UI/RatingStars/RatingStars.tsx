@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import classes from "./RatingStars.module.css";
 
 const MAX_STARS = 5;
-const RatingStars: React.FC<{ rating: number }> = ({ rating }) => {
+const RatingStars: FC<{ rating: number }> = ({ rating }) => {
     const filledStars = Math.round(rating * MAX_STARS);
     const emptyStars = MAX_STARS - filledStars;
 

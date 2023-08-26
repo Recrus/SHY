@@ -1,15 +1,21 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { Button, Typography } from "@material-tailwind/react";
+import React, { ChangeEvent, useEffect, useState, FC } from "react";
+import {
+    Button,
+    Input,
+    Select,
+    Option,
+    Typography,
+} from "@material-tailwind/react";
 import { PencilIcon } from "@heroicons/react/24/solid";
-import { useStateContext } from "../../../../context/StateContext";
+import { useStateContext } from "../../../../../context/StateContext";
 import {
     ExamTableRowProps,
     initialFromDataExamEdit,
-} from "../../../../../types/types";
-import axiosFetch from "../../../../plugins/axios";
-import EditExamDialog from "./EditExamDialog";
+} from "../../../../../../types/types";
+import axiosFetch from "../../../../../plugins/axios";
+import TheDialog from "../../../TheDialog/TheDialog";
 
-const ExamTableRow: React.FC<ExamTableRowProps> = ({
+const ExamTableRow: FC<ExamTableRowProps> = ({
     id,
     exam_id,
     classes,
@@ -22,6 +28,7 @@ const ExamTableRow: React.FC<ExamTableRowProps> = ({
     const [open, setOpen] = useState(false);
     const { user } = useStateContext();
     const [formData, setFormData] = useState<initialFromDataExamEdit>({
+        isFormModified: false,
         reviewer_id: reviewer.id,
         employee_id: employee.id,
         link: link,
@@ -37,6 +44,7 @@ const ExamTableRow: React.FC<ExamTableRowProps> = ({
 
     useEffect(() => {
         setFormData({
+            isFormModified: false,
             reviewer_id: reviewer.id,
             employee_id: employee.id,
             link: link,
@@ -66,6 +74,7 @@ const ExamTableRow: React.FC<ExamTableRowProps> = ({
 
     const handleDiscardChanges = () => {
         setFormData({
+            isFormModified: false,
             reviewer_id: reviewer.id,
             employee_id: employee.id,
             link: link,
@@ -90,6 +99,55 @@ const ExamTableRow: React.FC<ExamTableRowProps> = ({
         }
     };
 
+    const customBody = (
+        <>
+            <div className="mb-2">
+                <Select
+                    label="Select reviewer"
+                    labelProps={{
+                        className: "!text-silver",
+                    }}
+                    name="reviewer_id"
+                    color="indigo"
+                    value={select}
+                    className="text-theme"
+                    onChange={handler}
+                >
+                    {reviewersData.map((user) => (
+                        <Option key={user.id} value={String(user.id)}>
+                            {user.first_name + " " + user.last_name}
+                        </Option>
+                    ))}
+                </Select>
+            </div>
+            <div>
+                <Input
+                    crossOrigin="anonymous"
+                    color="indigo"
+                    name="link"
+                    label="Link"
+                    labelProps={{
+                        className: "!text-silver",
+                    }}
+                    value={formData.link}
+                    onChange={handleInputChange}
+                    className="text-theme"
+                />
+            </div>
+        </>
+    );
+
+    const customFooter = (
+        <>
+            <Button variant="text" color="red" className="mr-1">
+                <span onClick={handleDiscardChanges}>Cancel</span>
+            </Button>
+            <Button color="indigo" disabled={saveButtonDisabled}>
+                <span onClick={handleSaveChanges}>Confirm</span>
+            </Button>
+        </>
+    );
+
     return (
         <tr>
             <td className={classes}>
@@ -112,25 +170,26 @@ const ExamTableRow: React.FC<ExamTableRowProps> = ({
                     {link}
                 </Typography>
             </td>
+            <td className={classes}>
+                <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal text-theme"
+                    as="a"
+                    href={link}
+                >
+                    {employee.first_name} {employee.last_name}
+                </Typography>
+            </td>
             {user?.role_id === 1 ? (
                 <td className={classes}>
-                    <Button
-                        className="shadow-none pr-0 text-theme hover:text-primary hover:shadow-none"
-                        onClick={handleOpen}
-                    >
-                        <PencilIcon className="h-4 w-4" />
-                    </Button>
-                    <EditExamDialog
-                        formData={formData}
-                        reviewersData={reviewersData}
+                    <TheDialog
+                        openButton={PencilIcon}
+                        title="Edit exam"
+                        bodyContent={customBody}
+                        footerButtons={customFooter}
                         open={open}
-                        handler={handler}
-                        handleDiscardChanges={handleDiscardChanges}
-                        handleInputChange={handleInputChange}
                         handleOpen={handleOpen}
-                        handleSaveChanges={handleSaveChanges}
-                        saveButtonDisabled={saveButtonDisabled}
-                        select={select}
                     />
                 </td>
             ) : (

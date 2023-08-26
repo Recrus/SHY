@@ -5,15 +5,15 @@ import {
     CardFooter,
 } from "@material-tailwind/react";
 import React, { useEffect, useMemo, useState } from "react";
-import { usePaginatedSearch } from "../../../hooks/usePaginatedSearch/usePaginatedSearch";
+import { usePaginatedSearch } from "../../../hooks/usePaginatedSearch";
 import debounce from "../../../functions/debounce";
-import TableHeader from "../../../components/UI/Table/TableHeader/TableHeader";
+import TableHead from "../../../components/UI/Table/TableHead/TableHead";
 import CardTableHeader from "../../../components/UI/Table/CardTableHeader/CardTableHeader";
 import TableCreateUserForm from "../../../components/UI/Table/TableCreateUserForm";
 import PlaceholderRow from "../../../components/UI/Table/PlaceholderRow/PlaceholderRow";
-import UserTableRow from "../../../components/UI/Table/UserTableRow/UserTableRow";
+import UserTableRow from "../../../components/UI/Table/TableRows/UserTableRow/UserTableRow";
 import Pagination from "../../../components/UI/Table/Pagination/Pagination";
-import { SortKeys, TableHead } from "../../../../types/types";
+import { SortKeys, TheTableHead, UserData } from "../../../../types/types";
 
 const Users = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -28,10 +28,12 @@ const Users = () => {
         setSortKey,
         setSortDirection,
         setDataVersion,
-    } = usePaginatedSearch(`/users?itemsPerPage=10&page=${currentPage}`);
+    } = usePaginatedSearch<UserData>(
+        `/users?itemsPerPage=10&page=${currentPage}`,
+    );
     const PLACEHOLDER_ROWS: number = search ? search.split(" ").length : 10;
 
-    const TABLE_HEAD: TableHead = [
+    const TABLE_HEAD: TheTableHead = [
         "Full name",
         "User name",
         "Phone",
@@ -83,7 +85,7 @@ const Users = () => {
             </CardHeader>
             <CardBody className="overflow-scroll px-0 py-0">
                 <table className="mt-4 w-full min-w-max table-auto text-left">
-                    <TableHeader
+                    <TableHead
                         sortKey={sortKey}
                         setSortDirection={setSortDirection}
                         setSortKey={setSortKey}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import classes from "./Header.module.css";
 import classesToButton from "../TheButton/Button.module.css";
 import logo from "../../../media/images/Landing/logo.png";
@@ -10,7 +10,7 @@ export interface HeaderProps {
     linkVisible: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({
+const Header: FC<HeaderProps> = ({
     isMenuOpen,
     setIsMenuOpen,
     linkVisible,

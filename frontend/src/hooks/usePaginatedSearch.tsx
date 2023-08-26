@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import axiosFetch from "../../plugins/axios";
-import { PaginatedSearchData, PaginatedSearchHook } from "../../../types/types";
+import axiosFetch from "../plugins/axios";
+import { PaginatedSearchData, PaginatedSearchHook } from "../../types/types";
 
-export function usePaginatedSearch(
+export function usePaginatedSearch<T>(
     url: string,
     itemsPerPage = 10,
-): PaginatedSearchHook {
-    const [data, setData] = useState<PaginatedSearchData>({
+): PaginatedSearchHook<T> {
+    const [data, setData] = useState<PaginatedSearchData<T>>({
         data: [],
         meta: {
             current_page: 1,

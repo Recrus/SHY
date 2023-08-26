@@ -1,10 +1,10 @@
+import React, { FC } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { useStateContext } from "../context/StateContext";
 import { isTokenValid } from "../functions/tokenValidation";
-import React from "react";
 import { Spinner } from "@material-tailwind/react";
 
-const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const RequireAuth: FC<{ children: React.ReactNode }> = ({ children }) => {
     const location = useLocation();
     const { token, loading } = useStateContext();
     const tokenValid = isTokenValid(token);

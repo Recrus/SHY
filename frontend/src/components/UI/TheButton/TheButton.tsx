@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import classes from "./Button.module.css";
 import { TheButtonProps } from "../../../../types/types";
 
-const TheButton: React.FC<TheButtonProps> = ({
+const TheButton: FC<TheButtonProps> = ({
     text,
     className,
     handler,

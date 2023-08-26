@@ -6,6 +6,7 @@ use App\Models\Exam;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ExamLink>
@@ -32,7 +33,7 @@ class ExamLinkFactory extends Factory
         }
 
         return [
-            'link' => fake()->url,
+            'link' => 'https://example.com/exam/' . Str::random(10),
             'reviewer_id' => User::where('role_id', 4)->inRandomOrder()->first()->id,
             'employee_id' => $employee->id,
             'exam_id' => $exam->id,

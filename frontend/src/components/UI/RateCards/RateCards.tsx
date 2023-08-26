@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import classes from "./RateCards.module.css";
 import RatingStars from "../RatingStars/RatingStars";
 import { Overview } from "../../../../types/types.js";
-const RateCards: React.FC<{ overviews: Overview[] }> = ({ overviews }) => {
+const RateCards: FC<{ overviews: Overview[] }> = ({ overviews }) => {
     return (
         <>
             {overviews.map((item, index) => (

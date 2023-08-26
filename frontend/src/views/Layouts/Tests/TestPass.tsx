@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { Answer, Questions, Test } from "../../../../types/types";
 import axiosFetch from "../../../plugins/axios";
 import {
@@ -10,8 +10,8 @@ import {
 } from "@material-tailwind/react";
 import { useStateContext } from "../../../context/StateContext";
 import { useNavigate } from "react-router-dom";
-import ExamRowSkeleton from "../../../components/UI/Table/ExamTableRow/ExamRowSkeleton";
-import ExamTableRow from "../../../components/UI/Table/ExamTableRow/ExamTableRow";
+import RowSkeleton from "../../../components/UI/Table/RowSkeleton";
+import ExamTableRow from "../../../components/UI/Table/TableRows/ExamTableRow/ExamTableRow";
 import { Skeleton } from "@mui/material";
 
 export interface TestPassProps {
@@ -19,7 +19,7 @@ export interface TestPassProps {
     test: Test;
 }
 
-const TestPass: React.FC<TestPassProps> = ({ questions, test }) => {
+const TestPass: FC<TestPassProps> = ({ questions, test }) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [answers, setAnswers] = useState<Answer[]>([]);
     const [pickedAnswers, setPickedAnswers] = useState<Record<number, number>>(
@@ -127,7 +127,7 @@ const TestPass: React.FC<TestPassProps> = ({ questions, test }) => {
                                   }
                                   onClick={() => handleAnswerSelect(answer.id)}
                                   key={answer.id}
-                                  className="text-theme font-accent font-light"
+                                  className="text-theme font-light"
                               >
                                   {index + 1}. {answer.text}
                               </ListItem>

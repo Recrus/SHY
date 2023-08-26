@@ -10,6 +10,7 @@ import React, {
 
 export type SetState<T> = Dispatch<SetStateAction<T>>;
 type SVGProps = React.PropsWithoutRef<React.ComponentProps<"svg">>;
+type ButtonContent = string | HeroIcon | { icon: HeroIcon; text: string };
 interface DialogProps {
     open: boolean;
     handleOpen: () => void;
@@ -23,6 +24,16 @@ export type HeroIcon = React.ComponentType<
         titleId?: string | undefined;
     }
 >;
+
+//TheDialog types
+
+export interface TheDialogProps extends DialogProps {
+    openButton: ButtonContent;
+    title: string;
+    bodyContent?: ReactNode;
+    footerButtons?: ReactNode;
+    iconSize?: string;
+}
 
 //ContextProvider types
 
@@ -66,13 +77,13 @@ export interface MetaData {
     total: number;
 }
 
-export interface PaginatedSearchData {
-    data: UserData[];
+export interface PaginatedSearchData<T> {
+    data: T[];
     meta: MetaData;
 }
 
-export interface PaginatedSearchHook {
-    data: PaginatedSearchData;
+export interface PaginatedSearchHook<T> {
+    data: PaginatedSearchData<T>;
     loading: boolean;
     setLoading: SetState<boolean>;
     setSearch: SetState<string>;
@@ -173,27 +184,23 @@ export interface BurgerMenuProps {
 //Users component types
 
 export interface SortKeys {
-    "Full name": string;
-    "User name": string;
-    Phone: string;
-    "Signed at": string;
     [key: string]: string;
 }
 
-export type TableHead = string[];
+export type TheTableHead = string[];
 
-//TableHeader types
+//TableHead types
 
-export interface TableHeaderProps {
+export interface TableHeadProps {
     sortKey?: string;
     sortDirection?: string;
     setSortDirection: SetState<string>;
     setSortKey: SetState<string>;
-    TABLE_HEAD: TableHead;
+    TABLE_HEAD: TheTableHead;
     sortKeys: SortKeys;
 }
 
-//CardTableHeader types
+//TableHead types
 
 export interface CardTableHeaderProps {
     title: string;
@@ -274,6 +281,7 @@ export interface Exam {
     updated_at: string;
     avgMark: number | null;
     colorClass?: string;
+    is_accepted?: boolean;
 }
 
 export type RadarDataPoint = {
@@ -292,7 +300,7 @@ export interface ExamAnalyticsAdmin extends BaseExamAnalytics {
 export interface ExamAnalyticsEmployee extends BaseExamAnalytics {
     id: number;
     mark: number;
-    is_accepted: number;
+    is_accepted: boolean;
     junior_id: number;
     review_text: string;
     reviewed_at: string;
@@ -358,6 +366,7 @@ export interface initialFromDataExamEdit {
     employee_id: number | null;
     link: string;
     exam_id: number;
+    isFormModified: boolean;
 }
 
 //EditExamDialog types
@@ -375,21 +384,11 @@ export interface EditExamDialogProps extends DialogProps {
 
 //CreateExamLinkDialog types
 
-export interface CreateExamLinkDialogProps extends DialogProps {
+export interface CreateExamLinkDialogProps {
     employeesData: UserData[];
     setRefetch: SetState<number>;
     reviewersData: UserData[];
     exam_id: number;
-}
-
-//ExamCreateDialog types
-
-export interface ExamCreateDialogProps extends DialogProps {
-    name: RefObject<HTMLInputElement>;
-    description: RefObject<HTMLInputElement>;
-    handleSubmit: () => Promise<void>;
-    nameError: string;
-    descriptionError: string;
 }
 
 //Tests types
@@ -438,4 +437,12 @@ export interface QuestionEditDialogProps {
     answer: Answer;
     setRefetch: SetState<number>;
     correctAnswerCount: number;
+}
+
+//EditUser types
+
+export interface EditUserProps {
+    formData: InitialFormDataProfile;
+    handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    footer: boolean;
 }

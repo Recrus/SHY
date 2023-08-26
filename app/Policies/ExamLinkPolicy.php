@@ -26,9 +26,17 @@ class ExamLinkPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user, User $currentUser): bool
     {
-        return $user->role_id === 1;
+        if ($currentUser->role_id === 1) {
+            return true;
+        }
+
+        if ($currentUser->role_id === 3 && $user->id === $currentUser->id) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

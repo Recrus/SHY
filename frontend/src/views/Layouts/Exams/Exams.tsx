@@ -9,7 +9,7 @@ import {
 } from "../../../../types/types";
 import ExamCard from "../../../components/UI/Exams/ExamCard/ExamCard";
 import TheExamSkeleton from "../../../components/UI/Exams/ExamCard/TheExamSkeleton";
-import ExamOverview from "../../../components/UI/Exams/ExamCard/ExamOverview";
+import ExamOverview from "../../../components/UI/Exams/ExamOverview";
 import { useStateContext } from "../../../context/StateContext";
 
 const Exams = () => {

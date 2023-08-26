@@ -1,8 +1,8 @@
+import React, { FC } from "react";
 import { ResponsiveRadar } from "@nivo/radar";
-import React from "react";
 import { RadarChartProps } from "../../../../types/types";
 
-const RadarChart: React.FC<RadarChartProps> = ({ data }) => (
+const RadarChart: FC<RadarChartProps> = ({ data }) => (
     <ResponsiveRadar
         data={data}
         keys={["attempts"]}

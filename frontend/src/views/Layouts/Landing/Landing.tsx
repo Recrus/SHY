@@ -44,7 +44,7 @@ const Landing = () => {
             author: "Laura",
             content:
                 "I passed the SHY exam and got a job in web development. I adore my new job!",
-            occupation: "Font-end developer",
+            occupation: "Front-end developer",
             avatar: "https://i.ibb.co/Gv7ML5Z/Laura.jpg",
             git: "#",
         },
@@ -91,19 +91,10 @@ const Landing = () => {
                     <TheButton text={"Learn more"}></TheButton>
                 </div>
             </div>
-            <main
-                className={
-                    classes.main + " text-theme ease-in-out duration-300"
-                }
-            >
+            <main className={classes.main}>
                 <div className={classes.goalContainer}>
                     <div>
-                        <hr
-                            className={
-                                classes.goalLine +
-                                " dark:bg-primary ease-in-out duration-300"
-                            }
-                        />
+                        <hr className={classes.goalLine + " dark:bg-primary"} />
                         <div className={classes.goalText}>
                             Ready to start a new career in IT? Our project is
                             the perfect place to begin.

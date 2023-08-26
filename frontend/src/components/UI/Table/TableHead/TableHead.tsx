@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
 import { Typography } from "@material-tailwind/react";
-import { TableHeaderProps } from "../../../../../types/types";
+import { TableHeadProps } from "../../../../../types/types";
 
-const TableHeader: React.FC<TableHeaderProps> = ({
+const TableHead: FC<TableHeadProps> = ({
     sortKey,
     sortDirection,
     setSortDirection,
@@ -26,12 +26,12 @@ const TableHeader: React.FC<TableHeaderProps> = ({
                 {TABLE_HEAD.map((head, index) => (
                     <th
                         key={head}
-                        className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50 bg-neutral dark:bg-dark-neutral"
+                        className="cursor-pointer border-y border-blue-gray-100 p-4 transition-colors bg-neutral dark:bg-dark-neutral"
                         onClick={() => handleSort(sortKeys[head])}
                     >
                         <Typography
                             variant="small"
-                            className="flex items-center justify-between gap-2 font-normal leading-none opacity-70 text-dark-primary dark:text-neutral text-base"
+                            className="flex items-center justify-between gap-2 font-normal opacity-70 text-theme text-base"
                         >
                             {head}
                             {index !== TABLE_HEAD.length - 1 && (
@@ -48,4 +48,4 @@ const TableHeader: React.FC<TableHeaderProps> = ({
     );
 };
 
-export default TableHeader;
+export default TableHead;

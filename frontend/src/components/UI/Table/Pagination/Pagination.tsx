@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { Typography, Button } from "@material-tailwind/react";
 import { PaginationProps } from "../../../../../types/types";
 
-const Pagination: React.FC<PaginationProps> = ({
+const Pagination: FC<PaginationProps> = ({
     currentPage,
     setPage,
     totalPages,
@@ -16,11 +16,11 @@ const Pagination: React.FC<PaginationProps> = ({
     };
 
     return (
-        <div className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+        <div className="flex-between items-center border-t border-blue-gray-50 p-4">
             <Typography
                 variant="small"
                 color="blue-gray"
-                className="font-normal dark:text-neutral"
+                className="font-normal text-theme"
             >
                 Page {currentPage} of {totalPages}
             </Typography>

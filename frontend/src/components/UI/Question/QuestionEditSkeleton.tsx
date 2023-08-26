@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Skeleton } from "@mui/material";
 import { ListItem, ListItemSuffix } from "@material-tailwind/react";
 
@@ -7,7 +7,7 @@ export interface QuestionEditSkeletonProps {
     index: number;
 }
 
-const QuestionEditSkeleton: React.FC<QuestionEditSkeletonProps> = ({
+const QuestionEditSkeleton: FC<QuestionEditSkeletonProps> = ({
     length,
     index,
 }) => {

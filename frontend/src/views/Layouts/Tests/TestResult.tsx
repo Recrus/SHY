@@ -102,7 +102,7 @@ const TestResult = () => {
                                 to="/employee/tests"
                                 className="text-theme uppercase border p-3 rounded font-medium hover:border-primary hover:text-primary transition-all"
                             >
-                                <div className="flex items-center justify-center">
+                                <div className="flex-center items-center">
                                     <div className="mr-2">Back to tests</div>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

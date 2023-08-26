@@ -6,6 +6,7 @@ import { Checkbox } from "@material-tailwind/react";
 import axiosFetch from "../../../plugins/axios";
 
 import { useStateContext } from "../../../context/StateContext";
+import ErrorMessage from "../../../components/UI/Error/ErrorMessage";
 
 function SignUp() {
     const { setToken } = useStateContext();
@@ -67,68 +68,44 @@ function SignUp() {
     };
 
     return (
-        <div className="h-screen w-screen dark:bg-dark-blue ease-in-out duration-300">
-            <div className="max-w-[370px] mx-auto flex-center flex-col font-primary pt-20 md:max-w-[680px] 2xl:max-w-[800px]">
+        <div className="h-screen w-screen dark:bg-dark-blue transition-all">
+            <div className="w-1/2 mx-auto flex-center flex-col pt-20">
                 <div className="flex items-center flex-col mb-[20px]">
-                    <img
-                        src={logo}
-                        alt="#"
-                        className="h-[125px] w-[125px] mr-5 2xl:h-[150px] 2xl:w-[150px]"
-                    />
-                    <div className="text-lg text-theme">Sign up</div>
+                    <img src={logo} alt="#" className="h-[125px] w-1/6 mr-5" />
+                    <div className="text-lg">Sign up</div>
                 </div>
                 <form className="grid grid-cols-2 gap-7">
                     <input
                         type="text"
                         ref={firstName}
                         name="fname"
-                        className="bg-neutral border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg"
+                        className="bg-neutral border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg text-dark-neutral"
                         placeholder="First name"
                     />
-
                     <input
                         type="text"
                         ref={lastName}
                         name="lname"
-                        className="bg-neutral border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg"
+                        className="bg-neutral border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg text-dark-neutral"
                         placeholder="Last name"
                     />
-                    {firstNameError && (
-                        <div className="text-red-500 text-xs mt-1">
-                            {firstNameError}
-                        </div>
-                    )}
-
-                    {lastNameError && (
-                        <div className="text-red-500 text-xs mt-1">
-                            {lastNameError}
-                        </div>
-                    )}
-
+                    <ErrorMessage error={firstNameError} />
+                    <ErrorMessage error={lastNameError} />
                     <input
                         type="email"
                         ref={email}
                         name="email"
-                        className="bg-neutral col-span-2 border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg"
+                        className="bg-neutral col-span-2 border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg text-dark-neutral"
                         placeholder="Email"
                     />
-                    {emailError && (
-                        <div className="text-red-500 text-xs mt-1">
-                            {emailError}
-                        </div>
-                    )}
-
+                    <ErrorMessage error={emailError} />
                     <input
                         type="password"
                         ref={password}
-                        className="bg-neutral col-span-2 border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg"
+                        className="bg-neutral col-span-2 border-solid border-2 border-gray rounded p-4 2xl:placeholder:text-lg text-dark-neutral"
                         placeholder="Password"
                     />
-                    {passwordError && (
-                        <div className="text-red-500 text-xs mt-1">
-                            {passwordError}
-                        </div>
-                    )}
+                    <ErrorMessage error={passwordError} />
                 </form>
                 <div className="flex justify-around items-center mt-[20px]">
                     <Checkbox
@@ -137,24 +114,24 @@ function SignUp() {
                         inputRef={permission}
                         className="bg-neutral checked:bg-accent dark:checked:bg-dark-purple"
                     />
-                    <div className="text-[12px] md:text-sm 2xl:text-base text-theme">
+                    <div className="text-[12px] md:text-sm 2xl:text-base">
                         I want to receive inspiration, marketing promotions and
                         updates via email.
                     </div>
                 </div>
                 <button
                     onClick={submitHandler}
-                    className="rounded bg-accent text-theme uppercase p-3 text-base mt-[20px] drop-shadow-md 2xl:text-lg dark:bg-dark-purple"
+                    className="rounded bg-accent uppercase p-3 text-base mt-[20px] drop-shadow-md 2xl:text-lg dark:bg-dark-purple hover:opacity-60 transition-all"
                 >
                     Sign up
                 </button>
                 <Link
                     to="/login"
-                    className="text-theme no-underline self-end mt-[20px] text-[12px] cursor-pointer md:text-sm 2xl:text-base opacity-50"
+                    className="no-underline self-end mt-[20px] text-[12px] cursor-pointer md:text-sm 2xl:text-base opacity-50 hover:text-primary"
                 >
                     Already have an account? Sign in
                 </Link>
-                <div className="text-[10px] text-theme text-center mt-[34px] md:text-[12px] opacity-50">
+                <div className="text-[10px] text-center mt-[34px] md:text-[12px] opacity-50">
                     Copyright © SHY {new Date().getFullYear()}
                 </div>
                 <div className="absolute top-10 right-10">

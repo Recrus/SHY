@@ -1,10 +1,9 @@
+import React, { useEffect, FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../context/StateContext";
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect } from "react";
 import { Spinner } from "@material-tailwind/react";
 
-const LoggedUser: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const LoggedUser: FC<{ children: React.ReactNode }> = ({ children }) => {
     const navigate = useNavigate();
     const { user, loading } = useStateContext();
 

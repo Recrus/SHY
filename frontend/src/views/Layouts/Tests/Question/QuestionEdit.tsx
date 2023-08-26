@@ -48,11 +48,11 @@ const QuestionEdit = () => {
                     <Typography
                         variant="h5"
                         color="blue-gray"
-                        className="mb-2 text-theme font-primary"
+                        className="mb-2 text-theme"
                     >
                         {question.name}
                     </Typography>
-                    <Typography className="text-theme font-accent">
+                    <Typography className="text-theme">
                         {question.description}
                     </Typography>
                 </CardBody>
