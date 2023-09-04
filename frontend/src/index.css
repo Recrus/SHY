@@ -5,8 +5,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .text-theme {
+        @apply text-dark-neutral dark:text-neutral;
+    }
+    .flex-center {
+        @apply flex justify-center;
+    }
+    .flex-between {
+        @apply flex justify-between;
+    }
+}
+
 body {
     font-family: "Montserrat", sans-serif;
+}
+
+.dark{
+    background-color: #212121;
 }
 
 /* Обнуление стилей */
@@ -44,8 +60,6 @@ html,
 body {
     height: 100%;
     width: 100%;
-    line-height: 1;
-    font-size: 14px;
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -113,4 +127,12 @@ h6 {
 .alert-exit-active {
     transform: translateY(100%);
     transition: all 500ms ease;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: snow;
 }

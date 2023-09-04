@@ -2,15 +2,21 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Traits\HasBasicSearch;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\QueryBuilder\AllowedFilter;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasBasicSearch;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +24,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'user_name',
+        'phone',
         'email',
         'password',
+        'role_id',
+        'permission_for_email',
     ];
 
     /**
@@ -42,4 +53,108 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected array $searchableColumns = [
+        'first_name',
+        'last_name',
+        'user_name',
+        'phone',
+        'email',
+        'created_at',
+        'role_id',
+    ];
+
+    public static function getAllowedSorts(): array
+    {
+        return [
+            'id',
+            'first_name',
+            'last_name',
+            'user_name',
+            'phone',
+            'email',
+            'created_at',
+        ];
+    }
+
+    public static function getAllowedFilters(): array
+    {
+        return [
+            AllowedFilter::scope('search'),
+            AllowedFilter::exact('role_id'),
+        ];
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims(): array
+    {
+        return [];
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function resume(): HasOne
+    {
+        return $this->hasOne(Resume::class, 'junior_id');
+    }
+
+    public function review(): hasOne
+    {
+        return $this->hasOne(Exam::class, 'reviewer_id');
+    }
+
+    public function exams(): BelongsToMany
+    {
+        return $this->belongsToMany(Exam::class, 'user_exam', 'junior_id')
+            ->withPivot(
+                'mark',
+                'review_text',
+                'reviewed_at',
+                'is_accepted',
+            )
+            ->using(UserExam::class)
+            ->withTimestamps();
+    }
+
+    public function vacancies(): HasMany
+    {
+        return $this->hasMany(Vacancy::class, 'hr_id');
+    }
+
+    //todo check related pivot key
+    public function responses(): BelongsToMany
+    {
+        return $this->belongsToMany(Vacancy::class, 'user_vacancy', 'junior_id')
+            ->withPivot('date_of_response', 'cover_letter_id')
+            ->using(UserVacancy::class)
+            ->withTimestamps();
+    }
+
+    public function coverLetter(): HasMany
+    {
+        return $this->hasMany(CoverLetter::class, 'junior_id');
+    }
+
+    public function answers(): BelongsToMany
+    {
+        return $this->belongsToMany(Answer::class, 'answer_user', 'user_id')
+            ->withPivot('test_id')
+            ->using(AnswerUser::class)
+            ->withTimestamps();
+    }
+
+    public function tests(): BelongsToMany
+    {
+        return $this->belongsToMany(Test::class, 'test_user', 'student_id')
+            ->withPivot('mark', 'is_passed')
+            ->using(TestUser::class)
+            ->withTimestamps();
+    }
 }
