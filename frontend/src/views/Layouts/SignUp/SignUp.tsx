@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../../media/logo-nobg.svg";
-import DarkModeSwitcher from "../../../components/UI/DarkModeSwitcher/DarkModeSwitcher";
+import logo from "../../../../media/logo-nobg.svg";
+import DarkModeSwitcher from "../../../../components/UI/DarkModeSwitcher/DarkModeSwitcher";
 import { Checkbox } from "@material-tailwind/react";
-import axiosFetch from "../../../plugins/axios";
+import axiosFetch from "../../../../plugins/axios";
 
-import { useStateContext } from "../../../context/StateContext";
-import ErrorMessage from "../../../components/UI/Error/ErrorMessage";
+import { useStateContext } from "../../../../context/StateContext";
+import ErrorMessage from "../../../../components/UI/Error/ErrorMessage";
 
 function SignUp() {
     const { setToken } = useStateContext();

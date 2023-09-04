@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Exam, LinkData, UserData } from "../../../../types/types";
 import axiosFetch from "../../../plugins/axios";
-import { Button, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import ExamTableRow from "../../../components/UI/Table/TableRows/ExamTableRow/ExamTableRow";
 import RowSkeleton from "../../../components/UI/Table/RowSkeleton";
 import { useStateContext } from "../../../context/StateContext";
 import CreateExamLinkDialog from "../../../components/UI/Table/TableRows/ExamTableRow/CreateExamLinkDialog";
+
+const TABLE_HEAD = ["Reviewer", "Link", "Employee", ""];
+const PLACEHOLDER_ROWS = 5;
 
 const EditExam = () => {
     const { state } = useLocation();
@@ -17,8 +20,6 @@ const EditExam = () => {
     const [reviewers, setReviewers] = useState<UserData[]>([]);
     const [employees, setEmployees] = useState<UserData[]>([]);
     const [refetch, setRefetch] = useState(1);
-    const TABLE_HEAD = ["Reviewer", "Link", "Employee", ""];
-    const PLACEHOLDER_ROWS = 5;
 
     useEffect(() => {
         const fetchData = async () => {

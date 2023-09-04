@@ -216,7 +216,7 @@ export interface TableCreateUserFormProps {
     refetchData: () => void;
 }
 
-//PlaceholderRow types
+//UsersPlaceholderRow types
 
 export interface PlaceholderRowProps {
     key: number;

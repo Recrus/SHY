@@ -1,11 +1,11 @@
 import React, { FormEvent, useState } from "react";
 import classes from "./Login.module.css";
-import logo from "../../../media/images/Landing/logo.png";
-import { visibilityHandler } from "../../../functions/visibilityPass";
+import logo from "../../../../media/images/Landing/logo.png";
+import { visibilityHandler } from "../../../../functions/visibilityPass";
 import { Link } from "react-router-dom";
 
-import { useStateContext } from "../../../context/StateContext";
-import axiosFetch from "../../../plugins/axios";
+import { useStateContext } from "../../../../context/StateContext";
+import axiosFetch from "../../../../plugins/axios";
 
 const Login = () => {
     const [email, setEmail] = useState("");

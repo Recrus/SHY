@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { PlaceholderRowProps } from "../../../../../types/types.js";
 
-const PlaceholderRow: FC<PlaceholderRowProps> = ({ index, lastRow }) => {
+const UsersPlaceholderRow: FC<PlaceholderRowProps> = ({ index, lastRow }) => {
     const classes = lastRow ? "p-4" : "p-4 border-b border-blue-gray-50";
     return (
         <tr key={index} className={classes}>
@@ -29,4 +29,4 @@ const PlaceholderRow: FC<PlaceholderRowProps> = ({ index, lastRow }) => {
     );
 };
 
-export default PlaceholderRow;
+export default UsersPlaceholderRow;

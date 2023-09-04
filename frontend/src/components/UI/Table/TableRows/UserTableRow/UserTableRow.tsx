@@ -147,7 +147,7 @@ const UserTableRow: FC<UserTableRowProps> = ({
                     {new Date(created_at).toLocaleDateString()}
                 </Typography>
             </td>
-            <td className={`${classes} w-40`}>
+            <td className={`${classes} w-28`}>
                 <TheDialog
                     openButton={PencilIcon}
                     title={`Edit ${first_name}`}

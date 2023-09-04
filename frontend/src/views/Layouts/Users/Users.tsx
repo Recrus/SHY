@@ -10,10 +10,24 @@ import debounce from "../../../functions/debounce";
 import TableHead from "../../../components/UI/Table/TableHead/TableHead";
 import CardTableHeader from "../../../components/UI/Table/CardTableHeader/CardTableHeader";
 import TableCreateUserForm from "../../../components/UI/Table/TableCreateUserForm";
-import PlaceholderRow from "../../../components/UI/Table/PlaceholderRow/PlaceholderRow";
+import UsersPlaceholderRow from "../../../components/UI/Table/PlaceholderRow/UsersPlaceholderRow";
 import UserTableRow from "../../../components/UI/Table/TableRows/UserTableRow/UserTableRow";
 import Pagination from "../../../components/UI/Table/Pagination/Pagination";
 import { SortKeys, TheTableHead, UserData } from "../../../../types/types";
+
+const TABLE_HEAD: TheTableHead = [
+    "Full name",
+    "User name",
+    "Phone",
+    "Signed at",
+    "",
+];
+const sortKeys: SortKeys = {
+    "Full name": "id",
+    "User name": "user_name",
+    Phone: "phone",
+    "Signed at": "created_at",
+};
 
 const Users = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -33,19 +47,7 @@ const Users = () => {
     );
     const PLACEHOLDER_ROWS: number = search ? search.split(" ").length : 10;
 
-    const TABLE_HEAD: TheTableHead = [
-        "Full name",
-        "User name",
-        "Phone",
-        "Signed at",
-        "",
-    ];
-    const sortKeys: SortKeys = {
-        "Full name": "id",
-        "User name": "user_name",
-        Phone: "phone",
-        "Signed at": "created_at",
-    };
+    const refetchData = () => setDataVersion((prevVersion) => prevVersion + 1);
 
     const debouncedSearch = useMemo(
         () => debounce(setServerSearch, 500),
@@ -73,11 +75,7 @@ const Users = () => {
                     search={search}
                     setSearch={setSearch}
                     createButton={
-                        <TableCreateUserForm
-                            refetchData={() =>
-                                setDataVersion((prevVersion) => prevVersion + 1)
-                            }
-                        />
+                        <TableCreateUserForm refetchData={refetchData} />
                     }
                     subTitle="See information about all members"
                     title="Members list"
@@ -98,7 +96,7 @@ const Users = () => {
                             ? Array.from(
                                   { length: PLACEHOLDER_ROWS },
                                   (_, index) => (
-                                      <PlaceholderRow
+                                      <UsersPlaceholderRow
                                           key={index}
                                           index={index}
                                           lastRow={
@@ -114,11 +112,7 @@ const Users = () => {
                                       isLast={
                                           index === usersData.data.length - 1
                                       }
-                                      refetchData={() =>
-                                          setDataVersion(
-                                              (prevVersion) => prevVersion + 1,
-                                          )
-                                      }
+                                      refetchData={refetchData}
                                       setCurrentPage={setCurrentPage}
                                   />
                               ))}

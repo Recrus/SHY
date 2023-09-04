@@ -1,18 +1,18 @@
 import React from "react";
 import classes from "./Landing.module.css";
-import TheButton from "../../../components/UI/TheButton/TheButton";
-import goalImg from "../../../media/images/Landing/work_station.jpg";
-import RateCards from "../../../components/UI/RateCards/RateCards";
-import facebook from "../../../media/icons/Login/facebook.svg";
-import instagram from "../../../media/icons/Login/instagram.svg";
-import twitter from "../../../media/icons/Login/twitter.svg";
-import BurgerMenu from "../../../components/UI/BurgerMenu/BurgerMenu";
-import Header from "../../../components/UI/Header/Header";
+import TheButton from "../../../../components/UI/TheButton/TheButton";
+import goalImg from "../../../../media/images/Landing/work_station.jpg";
+import RateCards from "../../../../components/UI/RateCards/RateCards";
+import facebook from "../../../../media/icons/Login/facebook.svg";
+import instagram from "../../../../media/icons/Login/instagram.svg";
+import twitter from "../../../../media/icons/Login/twitter.svg";
+import BurgerMenu from "../../../../components/UI/BurgerMenu/BurgerMenu";
+import Header from "../../../../components/UI/Header/Header";
 
-import { useStateContext } from "../../../context/StateContext";
-import TheTimeline from "../../../components/UI/TheTimeLine/TheTimeLine";
-import DarkModeSwitcher from "../../../components/UI/DarkModeSwitcher/DarkModeSwitcher";
-import { Item, Overview } from "../../../../types/types";
+import { useStateContext } from "../../../../context/StateContext";
+import TheTimeline from "../../../../components/UI/TheTimeLine/TheTimeLine";
+import DarkModeSwitcher from "../../../../components/UI/DarkModeSwitcher/DarkModeSwitcher";
+import { Item, Overview } from "../../../../../types/types";
 
 const Landing = () => {
     //todo database query
