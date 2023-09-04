@@ -10,7 +10,7 @@ import debounce from "../../../functions/debounce";
 import TableHead from "../../../components/UI/Table/TableHead/TableHead";
 import CardTableHeader from "../../../components/UI/Table/CardTableHeader/CardTableHeader";
 import TableCreateUserForm from "../../../components/UI/Table/TableCreateUserForm";
-import UsersPlaceholderRow from "../../../components/UI/Table/PlaceholderRow/UsersPlaceholderRow";
+import UsersPlaceholderRow from "../../../components/UI/Table/PlaceholderRow/PlaceholderRow";
 import UserTableRow from "../../../components/UI/Table/TableRows/UserTableRow/UserTableRow";
 import Pagination from "../../../components/UI/Table/Pagination/Pagination";
 import { SortKeys, TheTableHead, UserData } from "../../../../types/types";
