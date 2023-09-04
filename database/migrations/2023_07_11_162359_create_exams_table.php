@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('link');
-            $table->foreignId('reviewer_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

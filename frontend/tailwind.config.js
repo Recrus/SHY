@@ -31,10 +31,9 @@ module.exports = withMT({
             "dark-neutral": "#424242",
             "dark-additional": "#212121",
             //additional colors
-            blue: "#1fb6ff",
+            "light-green": "#419923",
             pink: "#ff49db",
             orange: "#ff7849",
-            green: "#13ce66",
             "dark-gold": "#998723",
             "gray-dark": "#273444",
             gray: "#8492a6",
@@ -42,10 +41,14 @@ module.exports = withMT({
             "dark-blue": "#0a192f",
             "dark-purple": "#6a1b9a",
             purple: "#32074D",
+            silver: "#888888",
         },
         fontFamily: {
             primary: ["Montserrat", "sans-serif"],
             accent: ["Poppins", "sans-serif"],
+            sans: ["Montserrat", "sans-serif"],
+            serif: ["Poppins", "sans-serif"],
+            body: ["Montserrat", "sans-serif"],
         },
         fontSize: {
             sm: "14px",

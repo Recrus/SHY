@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ResumeSeeder::class,
             ExamSeeder::class,
+            ExamLinkSeeder::class,
             UserExamSeeder::class,
             SubjectSeeder::class,
             VacancySeeder::class,

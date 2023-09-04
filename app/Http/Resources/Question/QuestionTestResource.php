@@ -15,8 +15,8 @@ class QuestionTestResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'question_id' => $this->pivot->question_id,
+            'id' => $this->pivot->id,
+            'question' => new QuestionResource($this),
             'test_id' => $this->pivot->test_id,
         ];
     }

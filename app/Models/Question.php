@@ -43,6 +43,6 @@ class Question extends Model
 
     public function tests(): BelongsToMany
     {
-        return $this->belongsToMany(Test::class)->withTimestamps();
+        return $this->belongsToMany(Test::class)->withPivot('id', 'question_id', 'test_id')->withTimestamps();
     }
 }

@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Exam extends Model
 {
@@ -14,8 +14,6 @@ class Exam extends Model
     protected $fillable = [
         'name',
         'description',
-        'link',
-        'reviewer_id',
     ];
 
     public static function getAllowedSorts(): array
@@ -31,9 +29,9 @@ class Exam extends Model
         return [];
     }
 
-    public function reviewer(): BelongsTo
+    public function links(): HasMany
     {
-        return $this->belongsTo(User::class, 'reviewer_id');
+        return $this->hasMany(ExamLink::class);
     }
 
     public function users(): BelongsToMany

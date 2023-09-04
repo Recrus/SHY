@@ -25,8 +25,6 @@ class ExamRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'link' => ['required', 'string'],
-            'reviewer_id' => ['required', 'integer'],
         ];
     }
 }

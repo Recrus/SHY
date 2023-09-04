@@ -14,13 +14,6 @@ class ExamSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::where('role_id', 2)->get();
-
-
-        foreach ($users as $user){
-                Exam::factory()->create([
-                    'reviewer_id' => $user->id,
-                ]);
-        }
+                Exam::factory(6)->create();
     }
 }

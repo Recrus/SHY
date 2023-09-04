@@ -5,6 +5,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .text-theme {
+        @apply text-dark-neutral dark:text-neutral;
+    }
+    .flex-center {
+        @apply flex justify-center;
+    }
+    .flex-between {
+        @apply flex justify-between;
+    }
+}
+
 body {
     font-family: "Montserrat", sans-serif;
 }
@@ -48,8 +60,6 @@ html,
 body {
     height: 100%;
     width: 100%;
-    line-height: 1;
-    font-size: 14px;
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class Answer extends Model
 {
@@ -27,7 +28,9 @@ class Answer extends Model
 
     public static function getAllowedFilters(): array
     {
-        return [];
+        return [
+            AllowedFilter::exact('question_id'),
+        ];
     }
 
     public function question(): BelongsTo

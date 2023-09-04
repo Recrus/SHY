@@ -19,7 +19,6 @@ class ExamFactory extends Factory
         return [
             'name' => fake()->word(),
             'description' => fake()->text(),
-            'link' => fake()->url(),
         ];
     }
 }

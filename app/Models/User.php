@@ -61,6 +61,7 @@ class User extends Authenticatable implements JWTSubject
         'phone',
         'email',
         'created_at',
+        'role_id',
     ];
 
     public static function getAllowedSorts(): array
@@ -80,6 +81,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [
             AllowedFilter::scope('search'),
+            AllowedFilter::exact('role_id'),
         ];
     }
 

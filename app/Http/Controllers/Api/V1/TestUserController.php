@@ -92,9 +92,19 @@ class TestUserController extends Controller
 
         $mark = $this->calculateMark($percentage);
 
-        TestUser::where('student_id', $user_id)
+        $testUser = TestUser::where('student_id', $user_id)
             ->where('test_id', $test_id)
-            ->update(['is_passed' => $is_passed, 'mark' => $mark]);
+            ->first();
+
+        if (!$testUser) {
+            $testUser = new TestUser();
+            $testUser->student_id = $user_id;
+            $testUser->test_id = $test_id;
+        }
+
+        $testUser->is_passed = $is_passed;
+        $testUser->mark = $mark;
+        $testUser->save();
 
         return response()->json([
             'correctAnswersCount' => $correctAnswersCount,
